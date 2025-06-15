@@ -9,7 +9,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>This is the first start of the project!
+      <Text>Test!
       </Text>
       <Text>
         run "npx expo start" to run a developement display
