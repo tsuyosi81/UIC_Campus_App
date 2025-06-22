@@ -25,6 +25,11 @@ export default function Index() {
       <Button title="Go to Social Feed" onPress={() => router.push('/social_feed')} />
       <Button title="Go to Test" onPress={() => router.push('/test')} />
       <Button title="Go to User Profile" onPress={() => router.push('/user_profile')} />
+      <Button title="Go to Authentication" onPress={() => router.push("/authentication")}/>
+      <Button title="Go to Community" onPress={() => router.push("/community")} />
+      <Button title="Go to DM" onPress={() => router.push("/dm")}/>
+      <Button title="Go to Events" onPress={() => router.push("/event")}/>
+      
     </View>
   );
 }
