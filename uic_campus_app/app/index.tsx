@@ -1,35 +1,37 @@
-import { useRouter } from 'expo-router';
-import { Button, Text, View } from "react-native";
+import { router, useRouter } from 'expo-router';
+import { Button, ScrollView, View } from 'react-native';
 
 export default function Index() {
-  const router = useRouter();
+  const rounter = useRouter();
+
+  const pages = [
+    { title: 'Create Posts', route: '/create_posts' },
+    { title: 'Loading', route: '/loading' },
+    { title: 'Notifications', route: '/notifications' },
+    { title: 'Profile Setup', route: '/profile_setup' },
+    { title: 'Safety Map', route: '/safety_map' },
+    { title: 'Search', route: '/search' },
+    { title: 'Social Feed', route: '/social_feed' },
+    { title: 'Test', route: '/test' },
+    { title: 'User Profile', route: '/user_profile' },
+    { title: 'Authentication', route: '/authentication' },
+    { title: 'Community', route: '/community' },
+    { title: 'DM', route: '/dm' },
+    { title: 'Events', route: '/event' },
+    { title: 'Not Found', route: '/not-found' },
+    { title: '404', route: '/404' }  
+  ];
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
       
-      <Text>Naviate using the following buttons.</Text>
+      {pages.map((page) => (
+        <View key={page.route} style={{ marginVertical: 5, width: '100%' }}>
+          <Button title={`Go to ${page.title}`} onPress={() => router.push(page.route as any)} />
+        </View>
+      ))}
       
-      <Text>run "npx expo start" to run a developement display</Text>
-      
-      <Button title="Go to Create Posts" onPress={() => router.push('/create_posts')} />
-      <Button title="Go to Loading" onPress={() => router.push('/loading')} />
-      <Button title="Go to Notifications" onPress={() => router.push('/notifications')} />
-      <Button title="Go to Profile Setup" onPress={() => router.push('/profile_setup')} />
-      <Button title="Go to Safety Map" onPress={() => router.push('/safety_map')} />
-      <Button title="Go to Search" onPress={() => router.push('/search')} />
-      <Button title="Go to Social Feed" onPress={() => router.push('/social_feed')} />
-      <Button title="Go to Test" onPress={() => router.push('/test')} />
-      <Button title="Go to User Profile" onPress={() => router.push('/user_profile')} />
-      <Button title="Go to Authentication" onPress={() => router.push("/authentication")}/>
-      <Button title="Go to Community" onPress={() => router.push("/community")} />
-      <Button title="Go to DM" onPress={() => router.push("/dm")}/>
-      <Button title="Go to Events" onPress={() => router.push("/event")}/>
-      
-    </View>
+    </ScrollView>
   );
+
 }
