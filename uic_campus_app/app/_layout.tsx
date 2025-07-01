@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     fontFamily: 'WorkSans-VariableFont_wght',
+    marginLeft: -10
   },
   textContainer: {
     display: 'flex',
@@ -68,3 +69,5 @@ const styles = StyleSheet.create({
     color: "#767676"
   },
 })
+
+//Note: I'm going to try to move this all into a component eventually to make it look more clean for when we add other header desings
