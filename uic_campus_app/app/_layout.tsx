@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     fontFamily: 'WorkSans-VariableFont_wght',
-    marginLeft: -10
+    marginLeft: -8
   },
   textContainer: {
     display: 'flex',
