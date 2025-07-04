@@ -1,6 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
-import Tabs from "./components/tabs.jsx";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function DM() {
   const [text, setText] = React.useState("")
@@ -8,6 +7,38 @@ export default function DM() {
   return (
     <>
       <View style={styles.main}>
+        <View style={styles.messageContainer}>
+          <View style={styles.senderContainer}>
+            <View style={styles.senderMessage}>
+              <Text style={styles.senderTextMessage}>Nerd lmao</Text>
+              <View style={styles.senderTimestamp}>
+                <Text style={styles.senderTextTimestamp}>11:31 AM</Text>
+                <Image 
+                  style={{
+                    width: 16,
+                    height: 8
+                  }}
+                  source={require("./images/read.png")}
+                />
+              </View>
+            </View>
+            <View style={styles.senderMessage}>
+              <Text style={styles.senderTextMessage}>Funni hello world</Text>
+              <View style={styles.senderTimestamp}>
+                <Text style={styles.senderTextTimestamp}>11:31 AM</Text>
+                <Image 
+                  style={{
+                    width: 16,
+                    height: 8
+                  }}
+                  source={require("./images/read.png")}
+                />
+              </View>
+            </View>
+          </View>
+          <View style={styles.recipientContainer}>
+          </View>
+        </View>
         <View style={styles.inputContainer}>
           <TouchableOpacity>
             <Image
@@ -42,7 +73,6 @@ export default function DM() {
             />           
           </TouchableOpacity>
         </View>
-        <Tabs />
       </View>
     </>
   );
@@ -50,20 +80,22 @@ export default function DM() {
 
 const styles = StyleSheet.create({
   main: {
+    display: "flex",
     flex: 1,
+    flexDirection: "column",
     backgroundColor: "#FFFFFF",
-    justifyContent: "flex-end",
+    justifyContent: "space-between"
   },
   inputContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-start",
     alignItems: "center",
     gap: 8,
     backgroundColor: "#E3E8EB",
     height: 46,
     width: "auto",
-    margin: 20,
+    margin: 25,
+    marginHorizontal: 20,
     paddingLeft: 15,
     borderRadius: 25
   },
@@ -71,5 +103,50 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: 273,
     height: 40
+  },
+  messageContainer: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column", 
+    marginVertical: 20,
+    marginHorizontal: 40,
+    gap: 35
+  },
+  senderContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    alignItems: "flex-end"
+  },
+  senderMessage: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#56636F",
+    padding: 8,
+    gap: 8,
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 3 }
+  },
+  senderTextMessage: {
+    color: "#ffffff",
+    fontSize: 16
+  },
+  senderTimestamp: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 2,
+    paddingTop: 18
+  },
+  senderTextTimestamp: {
+    color: "#ffffff",
+    fontSize: 12
+  },
+  recipientContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    alignItems: "flex-start"
   }
 })
