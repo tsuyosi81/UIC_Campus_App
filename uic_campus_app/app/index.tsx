@@ -1,8 +1,8 @@
-import { router, useRouter } from 'expo-router';
+import { router } from 'expo-router';
 import { Button, ScrollView, View } from 'react-native';
 
 export default function Index() {
-  const rounter = useRouter();
+  // const rounte = useRouter();
 
   const pages = [
     { title: 'Create Posts', route: '/create_posts' },
@@ -33,5 +33,4 @@ export default function Index() {
       
     </ScrollView>
   );
-
 }
