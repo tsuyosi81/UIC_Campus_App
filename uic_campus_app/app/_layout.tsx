@@ -1,5 +1,6 @@
 import { Link, Stack } from "expo-router";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import styles from "./components/layout_stylesheet.js"
 
 export default function RootLayout() {
   return <Stack>
@@ -47,27 +48,3 @@ export default function RootLayout() {
     }}/>
   </Stack>;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    fontFamily: 'WorkSans-VariableFont_wght',
-    marginLeft: -8
-  },
-  textContainer: {
-    display: 'flex',
-    gap: 1,
-    marginLeft: 10
-
-  },
-  nameText: {
-    fontSize: 14
-  },
-  userNameText: {
-    fontSize: 12,
-    color: "#767676"
-  },
-})
-
-//Note: I'm going to try to move this all into a component eventually to make it look more clean for when we add other header desings
