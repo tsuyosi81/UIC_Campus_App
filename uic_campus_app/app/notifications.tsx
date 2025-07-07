@@ -1,16 +1,10 @@
 import { Text, View } from "react-native";
-
+import styles from "./components/notification_style.js"
 export default function Notifications() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>This is the notifications.tsx
-      </Text>
-    </View>
+    <>
+      <View style={styles.container}>
+      </View>
+    </>
   );
 }
