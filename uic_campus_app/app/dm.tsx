@@ -1,119 +1,74 @@
+import { Link } from "expo-router";
 import React from 'react';
-import { Image, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View, Platform } from "react-native";
-import styles from "./components/dm_stylesheet"
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import styles from "./components/dm_stylesheet.js";
 
 export default function DM() {
-  const [text, setText] = React.useState("")
 
   return (
     <>
-      <View style={styles.main}>
-        <KeyboardAvoidingView
-          style={{flex: 1}}
-          behavior="padding" 
-          keyboardVerticalOffset={80}
-        >
-          <View style={styles.messageContainer}>
-            <View style={styles.senderContainer}>
-              <View style={styles.senderMessage}>
-                <View style={styles.senderBody}>
-                  <Text style={styles.senderTextMessage}>Nerd lmao</Text>
-                </View>
-                <View style={styles.senderTimestamp}>
-                  <Text style={styles.senderTextTimestamp}>11:31 AM</Text>
-                  <Image 
-                    style={{
-                      width: 16,
-                      height: 8
-                    }}
-                    source={require("./images/read.png")}
-                  />
-                </View>
-              </View>
-              <View style={styles.senderMessage}>
-                <View style={styles.senderBody}>
-                  <Text style={styles.senderTextMessage}>Funni hello world</Text>
-                </View>
-                <View style={styles.senderTimestamp}>
-                  <Text style={styles.senderTextTimestamp}>11:31 AM</Text>
-                  <Image 
-                    style={{
-                      width: 16,
-                      height: 8
-                    }}
-                    source={require("./images/read.png")}
-                  />
-                </View>
-              </View>
-            </View>
-            <View style={styles.profileRecipient}>
-              <Image
-                style={{
-                  width: 32, 
-                  height: 32
-                }}
-                  source={require("./images/recipient-avatar.png")}
-                />
-              <View style={styles.recipientContainer}>
-                <View style={styles.recipientMessage}>
-                  <View style={styles.recipientHeader}>
-                    <Text style={styles.recipientName}>Bob</Text>
-                    <Text style={styles.recipientType}>Engineer</Text>
-                  </View>
-                  <View style={styles.recipientBody}>
-                    <Text style={styles.recipientTextMessage}>Plese stop talking to me.</Text>
-                  </View>
-                  <View style={styles.recipientTimeStamp}>
-                    <Text style={styles.recipientTimeStampText}>11:31 AM</Text>
-                  </View>
-                </View>
-                <View style={styles.recipientMessage}>
-                  <View style={styles.recipientBody}>
-                    <Text style={styles.recipientTextMessage}>Plese stop.</Text>
-                  </View>
-                  <View style={styles.recipientTimeStamp}>
-                    <Text style={styles.recipientTimeStampText}>11:31 AM</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        <View style={styles.inputContainer}>
-          <TouchableOpacity>
-            <Image
+    <View style={styles.main}>
+      <Text style={styles.header}>Recent</Text>
+      <View style={styles.mainContainer}>
+        <Link href="/dm_messages" asChild>   
+          <TouchableOpacity style={styles.messageBoxContainer}>
+            <Image 
               style={{
-                width: 16,
-                height: 16
+                width: 50,
+                height: 50
               }}
-              source={require("./images/add-media.png")}  
+              source={require("./images/recipient-avatar.png")}
             />
+            <View style={styles.messageBoxTextContainer}>
+              <Text style={styles.userName}>UserName</Text>
+              <Text>Message sent by the user</Text>
+            </View>
+            <View style={styles.notificationsContainer}>
+              <Text style={{color:"#56636F"}}>11:31 AM</Text>
+              <Text style={styles.notifications}>10</Text>
+            </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+        </Link>
+        <Link href="/dm_messages" asChild>   
+          <TouchableOpacity style={styles.messageBoxContainer}>
             <Image 
               style={{
-                width: 16,
-                height: 16
+                width: 50,
+                height: 50
               }}
-              source={require("./images/smiley.png")}  
-            />           
+              source={require("./images/recipient-avatar.png")}
+            />
+            <View style={styles.messageBoxTextContainer}>
+              <Text style={styles.userName}>UserName</Text>
+              <Text>Message sent by the user</Text>
+            </View>
+            <View style={styles.notificationsContainer}>
+              <Text style={{color:"#56636F"}}>11:31 AM</Text>
+              <Text style={styles.notifications}>10</Text>
+            </View>
           </TouchableOpacity>
-          <TextInput 
-            style={styles.textInput}
-            placeholder="Start typing..."
-            placeholderTextColor="#767676"
-          />
-          <TouchableOpacity>
+        </Link>
+        <Link href="/dm_messages" asChild>   
+          <TouchableOpacity style={styles.messageBoxContainer}>
             <Image 
               style={{
-                width: 19,
-                height: 15.33
+                width: 50,
+                height: 50
               }}
-              source={require("./images/send.png")}  
-            />           
+              source={require("./images/recipient-avatar.png")}
+            />
+            <View style={styles.messageBoxTextContainer}>
+              <Text style={styles.userName}>UserName</Text>
+              <Text>Message sent by the user</Text>
+            </View>
+            <View style={styles.notificationsContainer}>
+              <Text style={{color:"#56636F"}}>11:31 AM</Text>
+              <Text></Text>
+            </View>
           </TouchableOpacity>
-        </View>
-        </KeyboardAvoidingView>
+        </Link>
       </View>
+    </View>
     </>
   );
 }
