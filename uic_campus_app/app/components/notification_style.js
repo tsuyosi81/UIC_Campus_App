@@ -26,6 +26,47 @@ const styles = StyleSheet.create({
         color: "#000000",
         borderBottomWidth: 3,
         borderBottomColor: "#56636F",
+    },
+    notificationContainer: {
+        display: "flex",
+        flexDirection: "column",
+    },
+    alertNotification: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        paddingHorizontal: 30,
+        paddingVertical: 30,
+        gap: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: "#D1D8DD",
+    },
+    mentionNotification: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        paddingHorizontal: 30,
+        paddingTop: 30,
+        paddingBottom: 20,
+        gap: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: "#D1D8DD",
+    },
+    mentionTop: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 15
+    },
+    mentionText: {
+        marginHorizontal: 40
+    },
+    bold: {
+        fontWeight: "bold"
+    },
+    grayed: {
+        color: "#767676"
     }
 })
 
