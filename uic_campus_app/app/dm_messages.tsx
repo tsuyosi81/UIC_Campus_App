@@ -1,9 +1,10 @@
-import React from 'react';
-import { Image, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, KeyboardAvoidingView, ScrollView, View } from "react-native";
 import styles from "./components/dm_messsage_stylesheet";
+import Input from "./components/input.tsx";
+import RecipientMessage from "./components/recipient_message.tsx";
+import SenderMessage from "./components/sender_message.tsx";
 
 export default function DM_Messages() {
-  const [text, setText] = React.useState("")
 
   return (
     <>
@@ -13,38 +14,10 @@ export default function DM_Messages() {
           behavior="padding" 
           keyboardVerticalOffset={80}
         >
-          <View style={styles.messageContainer}>
+          <ScrollView style={styles.messageContainer}>
             <View style={styles.senderContainer}>
-              <View style={styles.senderMessage}>
-                <View style={styles.senderBody}>
-                  <Text style={styles.senderTextMessage}>Nerd lmao</Text>
-                </View>
-                <View style={styles.senderTimestamp}>
-                  <Text style={styles.senderTextTimestamp}>11:31 AM</Text>
-                  <Image 
-                    style={{
-                      width: 16,
-                      height: 8
-                    }}
-                    source={require("./images/read.png")}
-                  />
-                </View>
-              </View>
-              <View style={styles.senderMessage}>
-                <View style={styles.senderBody}>
-                  <Text style={styles.senderTextMessage}>Funni hello world</Text>
-                </View>
-                <View style={styles.senderTimestamp}>
-                  <Text style={styles.senderTextTimestamp}>11:31 AM</Text>
-                  <Image 
-                    style={{
-                      width: 16,
-                      height: 8
-                    }}
-                    source={require("./images/read.png")}
-                  />
-                </View>
-              </View>
+              <SenderMessage text="Nerd lmao" timeStamp="11:31 AM"/>
+              <SenderMessage text="Funni hello world" timeStamp="11:31 AM"/>
             </View>
             <View style={styles.profileRecipient}>
               <Image
@@ -55,63 +28,25 @@ export default function DM_Messages() {
                   source={require("./images/recipient-avatar.png")}
                 />
               <View style={styles.recipientContainer}>
-                <View style={styles.recipientMessage}>
-                  <View style={styles.recipientHeader}>
-                    <Text style={styles.recipientName}>Bob</Text>
-                    <Text style={styles.recipientType}>Engineer</Text>
-                  </View>
-                  <View style={styles.recipientBody}>
-                    <Text style={styles.recipientTextMessage}>Plese stop talking to me.</Text>
-                  </View>
-                  <View style={styles.recipientTimeStamp}>
-                    <Text style={styles.recipientTimeStampText}>11:31 AM</Text>
-                  </View>
-                </View>
-                <View style={styles.recipientMessage}>
-                  <View style={styles.recipientBody}>
-                    <Text style={styles.recipientTextMessage}>Plese stop.</Text>
-                  </View>
-                  <View style={styles.recipientTimeStamp}>
-                    <Text style={styles.recipientTimeStampText}>11:31 AM</Text>
-                  </View>
-                </View>
+                <RecipientMessage text="Please stop talking to me" timeStamp="11:31 AM" isHeader={true} name="Bob" type="Engineer"/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
+                <RecipientMessage text="Please stop." timeStamp="11:31 AM" isHeader={false}/>
               </View>
             </View>
-          </View>
-        <View style={styles.inputContainer}>
-          <TouchableOpacity>
-            <Image
-              style={{
-                width: 16,
-                height: 16
-              }}
-              source={require("./images/add-media.png")}  
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image 
-              style={{
-                width: 16,
-                height: 16
-              }}
-              source={require("./images/smiley.png")}  
-            />           
-          </TouchableOpacity>
-          <TextInput 
-            style={styles.textInput}
-            placeholder="Start typing..."
-            placeholderTextColor="#767676"
-          />
-          <TouchableOpacity>
-            <Image 
-              style={{
-                width: 19,
-                height: 15.33
-              }}
-              source={require("./images/send.png")}  
-            />           
-          </TouchableOpacity>
-        </View>
+            <View style={styles.senderContainer}>
+              <SenderMessage text="no" timeStamp="11:31 AM"/>
+            </View>
+          </ScrollView>
+          <Input/>
         </KeyboardAvoidingView>
       </View>
     </>

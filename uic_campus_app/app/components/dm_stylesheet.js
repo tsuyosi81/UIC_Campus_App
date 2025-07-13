@@ -40,15 +40,16 @@ const DMStyles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-end",
-    marginLeft: 80,
+    marginHorizontal: 80,
     gap: 5
   },
   notifications: {
-    color: "#ffffff",
     backgroundColor: "#56636F",
+    borderRadius: "50%",
+    width: 25,
+    alignItems: "center",
     paddingVertical: 4,
-    paddingHorizontal: 5,
-    borderRadius: 50
+    paddingHorizontal: 2, 
   }
 })
 

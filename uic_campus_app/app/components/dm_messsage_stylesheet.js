@@ -1,4 +1,4 @@
-import  { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 const DMStyles = StyleSheet.create({
   main: {
@@ -16,8 +16,8 @@ const DMStyles = StyleSheet.create({
     backgroundColor: "#E3E8EB",
     height: 46,
     width: "auto",
-    margin: 25,
     marginHorizontal: 20,
+    marginBottom: 25,
     paddingLeft: 15,
     borderRadius: 25
   },
@@ -30,15 +30,14 @@ const DMStyles = StyleSheet.create({
     flex: 1,
     display: "flex",
     flexDirection: "column", 
-    marginVertical: 20,
-    marginHorizontal: 20,
-    gap: 25
+    margin: 20
   },
   senderContainer: {
     display: "flex",
     flexDirection: "column",
     gap: 12,
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+    marginBottom: 20
   },
   senderMessage: {
     display: "flex",
@@ -74,7 +73,9 @@ const DMStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     gap: 12,
-    alignItems: "flex-start"
+    alignItems: "flex-start",
+    justifyContent: "center",
+    marginBottom: 20
   },
   recipientMessage: {
     display: "flex",

@@ -48,7 +48,7 @@ export default function RootLayout() {
                 style={{
                   width: 24,
                   height: 24,
-                  margin: 0,
+                  margin: 0
                 }}
                 source={require("./images/notification.png")}  
               />
@@ -91,7 +91,7 @@ export default function RootLayout() {
                 style={{
                   width: 16,
                   height: 4,
-                  margin: 0,
+                  margin: 16
                 }}
                 source={require("./images/options.png")}  
               />
