@@ -1,6 +1,15 @@
 import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
+    header: {
+        display: "flex",
+        flexDirection: "row",
+        marginTop: 50,
+        marginHorizontal: 0,
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 110
+    },
     container: {
         flex: 1,
         backgroundColor: "#ffffff"
