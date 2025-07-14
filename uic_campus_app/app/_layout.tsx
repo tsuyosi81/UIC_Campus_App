@@ -1,9 +1,64 @@
 import { Link, Stack } from "expo-router";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import styles from "./components/layout_stylesheet.js";
 
 export default function RootLayout() {
   return <Stack>
     <Stack.Screen name="dm" options={{
+      title: "",
+      headerTintColor: "black",
+      headerBackVisible: false,
+      headerTitle: () => (
+        <View style={styles.searchContainer}>
+          <TouchableOpacity>
+            <Image
+              style={{
+                width: 14,
+                height: 14
+              }}
+              source={require("./images/search.png")}  
+            />
+          </TouchableOpacity>
+          <TextInput 
+            placeholder="Search conversation"
+            placeholderTextColor="#767676"
+          />
+        </View>
+      ),
+      headerLeft: () => (
+        <View style={styles.container}>
+          <Link href="/user_profile" asChild>
+            <TouchableOpacity>
+              <Image
+                style={{
+                  width: 38,
+                  height: 38
+                }}
+                source={require("./images/profile.png")}  
+              />
+            </TouchableOpacity>
+          </Link>
+        </View>
+      ),
+      headerRight: () => (
+        <View>
+          <Link href="/notifications" asChild>
+            <TouchableOpacity>
+              <Image
+                style={{
+                  width: 24,
+                  height: 24,
+                  margin: 0
+                }}
+                source={require("./images/notification.png")}  
+              />
+            </TouchableOpacity>
+          </Link>
+        </View>
+      )
+    }}/>
+
+    <Stack.Screen name="dm_messages" options={{
       title: "",
       headerBackImageSource: require("./images/arrow.png"),
       headerTintColor: "black",
@@ -36,7 +91,7 @@ export default function RootLayout() {
                 style={{
                   width: 16,
                   height: 4,
-                  margin: 16,
+                  margin: 16
                 }}
                 source={require("./images/options.png")}  
               />
@@ -47,27 +102,3 @@ export default function RootLayout() {
     }}/>
   </Stack>;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    fontFamily: 'WorkSans-VariableFont_wght',
-    marginLeft: -8
-  },
-  textContainer: {
-    display: 'flex',
-    gap: 1,
-    marginLeft: 10
-
-  },
-  nameText: {
-    fontSize: 14
-  },
-  userNameText: {
-    fontSize: 12,
-    color: "#767676"
-  },
-})
-
-//Note: I'm going to try to move this all into a component eventually to make it look more clean for when we add other header desings
