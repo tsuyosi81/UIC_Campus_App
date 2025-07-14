@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function Community() {
 
@@ -37,7 +37,7 @@ const CardCategoryContainer = ({ category, posts }: { category: string; posts: P
   <View style={styles.cardCategoryContainer}>
         <View style={styles.categoryHeader}>
           <Text style={styles.categoryTitle}>{category}</Text>
-          <Text style={styles.viewAll}>View All ></Text>
+          <Text style={styles.viewAll}>View All</Text>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardContainer}>
           {posts.map(post => (
