@@ -1,8 +1,9 @@
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import styles from "./components/css/notification_style.js";
 import Event from "./components/events.tsx";
+import Header from "./components/headerNotification.tsx";
 import Mention from "./components/mention.tsx";
-import styles from "./components/notification_style.js";
 import Reminder from "./components/reminder.tsx";
 import Warning from "./components/warning.tsx";
 
@@ -13,6 +14,7 @@ export default function Notifications() {
   return (
     <>
       <View style={styles.container}>
+        <Header/>
         <View style={styles.tabContainer}>
           <TouchableOpacity onPress={() => setActiveTab('All')}>
             <Text style={[styles.tabText, activeTab === 'All' && styles.activeTabText]}>All</Text>

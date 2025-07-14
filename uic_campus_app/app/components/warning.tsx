@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import styles from "./notification_style.js";
+import styles from "./css/notification_style.js";
 
 export default function Warning(props) {
     return (
