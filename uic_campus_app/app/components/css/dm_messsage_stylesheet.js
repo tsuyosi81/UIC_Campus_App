@@ -17,7 +17,8 @@ const DMStyles = StyleSheet.create({
     height: 46,
     width: "auto",
     marginHorizontal: 20,
-    marginBottom: 25,
+    marginTop: 0,
+    marginBottom: 20,
     paddingLeft: 15,
     borderRadius: 25
   },

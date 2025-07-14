@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import styles from "./dm_messsage_stylesheet";
+import styles from "./css/dm_messsage_stylesheet";
 
 export default function RecipientMessage(props) {
     return (

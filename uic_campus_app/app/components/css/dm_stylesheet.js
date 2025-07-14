@@ -9,7 +9,6 @@ const DMStyles = StyleSheet.create({
   },
   header: {
     marginLeft: 20,
-    marginTop: 10,
     fontWeight: "bold",
     fontSize: 24,
     letterSpacing: 1
