@@ -55,6 +55,8 @@ const Card = ({ title, content }: { title: string; content: string }) => (
       <Text style={styles.cardContent}>{content}</Text>
     </View>
   </View>
+
+  
 );
 
 const styles = StyleSheet.create({

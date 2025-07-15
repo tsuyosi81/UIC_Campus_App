@@ -2,10 +2,12 @@
 // import React from 'react';
 // import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Header() {
+  const [activeTab, setActiveTab] = useState('Feed')
+
   return (  
       <View style={styles.header}>
 
@@ -20,10 +22,22 @@ export default function Header() {
           </View>
           
           <View style={styles.contentSelections}>
-            <TouchableOpacity onPress={()=>console.log('Content Selection Pressed')}><Text style={styles.selection}>Feed</Text></TouchableOpacity>
-            <TouchableOpacity onPress={()=>console.log('Content Selection Pressed')}><Text style={styles.selection}>Following</Text></TouchableOpacity>
-            <TouchableOpacity onPress={()=>console.log('Content Selection Pressed')}><Text style={styles.selection}>Lost&Found</Text></TouchableOpacity>
-            <TouchableOpacity onPress={()=>console.log('Content Selection Pressed')}><Text style={styles.selection}>Safety</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>setActiveTab('Feed')}>
+                <Text style={styles.selection}>Feed</Text>
+                {activeTab === 'Feed' && <View style={styles.underline} />}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>setActiveTab('Following')}>
+                <Text style={styles.selection}>Following</Text>
+                {activeTab === 'Following' && <View style={styles.underline} />}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>setActiveTab('Lost&Found')}>
+                <Text style={styles.selection}>Lost&Found</Text>
+                {activeTab === 'Lost&Found' && <View style={styles.underline} />}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>setActiveTab('Safety')}>
+                <Text style={styles.selection}>Safety</Text>
+                {activeTab === 'Safety' && <View style={styles.underline} />}
+            </TouchableOpacity>
           </View>
       </View>
   );
@@ -32,11 +46,16 @@ export default function Header() {
 const styles = StyleSheet.create({
 
     header: {
-        backgroundColor: '#f8f8f8',
+        // position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        // backgroundColor: '#f8f8f8',
+        backgroundColor:'#fff',
         justifyContent: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-    },
+        // borderBottomWidth: 1,
+        // borderBottomColor: '#ccc',
+        },
 
     topHeader:{
         flexDirection: 'row', 
@@ -73,5 +92,13 @@ const styles = StyleSheet.create({
         marginBottom: 0,
         fontWeight: '600',
         fontSize: 14,
-    }
+    },
+
+    underline: {
+        marginTop: 4,
+        height: 3,
+        width: '100%',
+        backgroundColor: 'dodgerblue',
+        borderRadius: 2,
+  },
 })
