@@ -17,6 +17,10 @@ export default function Header() {
             </TouchableOpacity>
 
             <TouchableOpacity>
+            <Image source={require("./images/smiley.png")} style={styles.logo}></Image>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
             <Image source={require('./images/notification.svg')} style={styles.notification}></Image>
             </TouchableOpacity>
           </View>
@@ -71,6 +75,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: '100%'
+    },
+
+    logo:{
+        width: 20,
+        height: 20
     },
 
     notification:{

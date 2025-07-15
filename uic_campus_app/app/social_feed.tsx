@@ -7,6 +7,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import BottomNavBar from "./bottomNavBar";
 import Header from "./header";
 import Post from "./post";
+import PostBtn from "./postBtn";
 
 export default function SocialFeed() {
   return (  
@@ -18,6 +19,7 @@ export default function SocialFeed() {
             <Post/>
             <Post/>
         </ScrollView>
+        <PostBtn/>
         <BottomNavBar/>
     </>
   );
