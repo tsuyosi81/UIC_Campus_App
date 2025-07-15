@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import styles from "./dm_stylesheet.js";
+import styles from "./css/dm_stylesheet.js";
 
 export default function DmTab(props) {
     return (

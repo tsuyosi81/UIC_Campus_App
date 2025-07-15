@@ -1,15 +1,37 @@
 import { StyleSheet } from 'react-native';
 
 const LayoutStyles = StyleSheet.create({
-  container: {
+  dmHeader: {
     display: 'flex',
     flexDirection: 'row',
-    marginLeft: -8
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30
+  },
+  dmMessageHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  containerDM: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15
+  },
+  containerMessage: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 15,
+    gap: 15
   },
   textContainer: {
     display: 'flex',
     gap: 1,
-    marginLeft: 10
+    maringLeft: -10
   },
   nameText: {
     fontSize: 14
@@ -22,12 +44,12 @@ const LayoutStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 5,
     backgroundColor: "#E3E8EB",
     height: 31,
     width: 273,
     margin: 25,
-    marginHorizontal: 20,
+    marginHorizontal: 15,
     paddingLeft: 15,
     borderRadius: 25
   }

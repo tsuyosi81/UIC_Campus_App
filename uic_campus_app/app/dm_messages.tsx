@@ -1,5 +1,6 @@
 import { Image, KeyboardAvoidingView, ScrollView, View } from "react-native";
-import styles from "./components/dm_messsage_stylesheet";
+import styles from "./components/css/dm_messsage_stylesheet.js";
+import DMMessageHeader from "./components/dm_message_header.tsx";
 import Input from "./components/input.tsx";
 import RecipientMessage from "./components/recipient_message.tsx";
 import SenderMessage from "./components/sender_message.tsx";
@@ -9,6 +10,7 @@ export default function DM_Messages() {
   return (
     <>
       <View style={styles.main}>
+        <DMMessageHeader/>
         <KeyboardAvoidingView
           style={{flex: 1}}
           behavior="padding" 
