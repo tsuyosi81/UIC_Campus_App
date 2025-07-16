@@ -4,10 +4,10 @@
 
 import React from 'react';
 import { ScrollView, StyleSheet } from "react-native";
-import BottomNavBar from "./bottomNavBar";
-import Header from "./header";
-import Post from "./post";
-import PostBtn from "./postBtn";
+import BottomNavBar from "./components/bottomNavBar.tsx";
+import Header from "./components/header.tsx";
+import PostBtn from "./components/postBtn.tsx";
+import Post from "./post.tsx";
 
 export default function SocialFeed() {
   return (  

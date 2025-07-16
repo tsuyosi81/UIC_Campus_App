@@ -3,7 +3,7 @@
 // import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Header() {
   const [activeTab, setActiveTab] = useState('Feed')
@@ -13,34 +13,15 @@ export default function Header() {
 
           <View style={styles.topHeader}>
             <TouchableOpacity>
-            <Image source={require("./images/dummyImg.jpg")} style={styles.profile}></Image>
+            <Image source={require("../images/arrow.png")} style={styles.arrow}></Image>
             </TouchableOpacity>
 
             <TouchableOpacity>
-            <Image source={require("./images/smiley.png")} style={styles.logo}></Image>
+            <Image source={require("../images/smiley.png")} style={styles.logo}></Image>
             </TouchableOpacity>
 
             <TouchableOpacity>
-            <Image source={require('./images/notification.svg')} style={styles.notification}></Image>
-            </TouchableOpacity>
-          </View>
-          
-          <View style={styles.contentSelections}>
-            <TouchableOpacity onPress={()=>setActiveTab('Feed')}>
-                <Text style={styles.selection}>Feed</Text>
-                {activeTab === 'Feed' && <View style={styles.underline} />}
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setActiveTab('Following')}>
-                <Text style={styles.selection}>Following</Text>
-                {activeTab === 'Following' && <View style={styles.underline} />}
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setActiveTab('Lost&Found')}>
-                <Text style={styles.selection}>Lost&Found</Text>
-                {activeTab === 'Lost&Found' && <View style={styles.underline} />}
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setActiveTab('Safety')}>
-                <Text style={styles.selection}>Safety</Text>
-                {activeTab === 'Safety' && <View style={styles.underline} />}
+            <Image source={require('../images/notification.svg')} style={styles.notification}></Image>
             </TouchableOpacity>
           </View>
       </View>
@@ -68,13 +49,13 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
 
-    profile:{
+    arrow:{
         marginHorizontal: 15,
-        width: 38,
-        height: 38,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: '100%'
+        width: 20,
+        height: 20,
+        // borderWidth: 1,
+        // borderColor: '#ccc',
+        // borderRadius: '100%'
     },
 
     logo:{

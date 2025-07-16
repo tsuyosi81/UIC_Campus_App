@@ -2,26 +2,26 @@
 // import React from 'react';
 // import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 
-import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function BottomNavBar() {
+      
   return (  
       <View style={styles.bottomNavigation}>
         <TouchableOpacity>
-            <Image source={require("./images/home.svg")} style={styles.menu}/>
+            <Image source={require("../images/home.svg")} style={styles.menu}/>
         </TouchableOpacity>
           <TouchableOpacity>
-              <Image source={require("./images/search.svg")} style={styles.menu} />
+              <Image source={require("../images/search.svg")} style={styles.menu} />
           </TouchableOpacity>
           <TouchableOpacity>
-              <Image source={require("./images/community.svg")} style={styles.menu} />
+              <Image source={require("../images/community.svg")} style={styles.menu} />
           </TouchableOpacity>
           <TouchableOpacity>
-              <Image source={require("./images/events.svg")} style={styles.menu}/>
+              <Image source={require("../images/events.svg")} style={styles.menu}/>
           </TouchableOpacity>
           <TouchableOpacity>
-              <Image source={require("./images/dm.svg")} style={styles.menu} />
+              <Image source={require("../images/dm.svg")} style={styles.menu} />
           </TouchableOpacity>
       </View>
   );
