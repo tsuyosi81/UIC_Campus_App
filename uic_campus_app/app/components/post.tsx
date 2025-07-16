@@ -10,7 +10,7 @@ export default function post() {
     <View style={styles.postContainer}>
         <View style={styles.post}>
             <TouchableOpacity>
-            <Image style={styles.userProfile} source={require("./images/dummyImg.jpg")}></Image>
+            <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")}></Image>
             </TouchableOpacity>
             <View style={styles.content}>
                 <View style={styles.userInfo}>
@@ -30,28 +30,28 @@ export default function post() {
                     <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
                 </View>
                 <Text style={styles.textContent}>This is a sample post text. It can be a short description or a longer message.</Text>
-                <Image source={require("./images/dummyImg.jpg")} style={styles.postImg} />
+                <Image source={require("../images/dummyImg.jpg")} style={styles.postImg} />
                 
                 {/* POST ACTIONS */}
                 <View style={styles.postActions}>
                     {/* Like button */}
                     <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={require("./images/likes.svg")} style={styles.icon} />
+                        <Image source={require("../images/likes.svg")} style={styles.icon} />
                         <Text>999</Text>
                     </TouchableOpacity>
                     {/* Comment button */}
                     <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={require("./images/comment.svg")} style={styles.icon} />
+                        <Image source={require("../images/comment.svg")} style={styles.icon} />
                         <Text>999</Text>
                     </TouchableOpacity>
                     {/* Repost button */}
                     <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={require("./images/repost.svg")} style={styles.icon} />
+                        <Image source={require("../images/repost.svg")} style={styles.icon} />
                         <Text>999</Text>
                     </TouchableOpacity>
                     {/* Share button */}
                     <TouchableOpacity>
-                        <Image source={require("./images/share.svg")} style={styles.icon} />
+                        <Image source={require("../images/share.svg")} style={styles.icon} />
                     </TouchableOpacity>
                 </View>
             </View>
