@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         // backgroundColor: '#f8f8f8',
         backgroundColor:'#fff',
         justifyContent: 'center',
-        // borderBottomWidth: 1,
-        // borderBottomColor: '#ccc',
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
         },
 
     topHeader:{

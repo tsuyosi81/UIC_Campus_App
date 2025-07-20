@@ -1,10 +1,9 @@
-// import { Button } from '@react-navigation/elements';
-// import React from 'react';
-// import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
-
+import React, { useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function BottomNavBar() {
+    
+  const [activeTab, setActiveTab] = useState('Feed')
       
   return (  
       <View style={styles.bottomNavigation}>

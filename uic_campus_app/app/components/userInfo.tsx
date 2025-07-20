@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     },
     
     major:{
-        backgroundColor: '#999',
+        backgroundColor: '#007bff',
+        color: '#fff',
         padding: 8,
         fontSize: 13,
         borderRadius: 20,
