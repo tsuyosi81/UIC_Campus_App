@@ -1,33 +1,41 @@
 // import { Button } from '@react-navigation/elements';
 // import React from 'react';
 // import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
-
+import { Link } from "expo-router";
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// ...existing code...
+// import HomeIcon from '../images/home.svg';
+// Usage:
 
 export default function post() {
   return ( 
     <View style={styles.postContainer}>
         <View style={styles.post}>
-            <TouchableOpacity>
-            <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")}></Image>
-            </TouchableOpacity>
+            <Link href='../user_profile' asChild>
+                <TouchableOpacity>
+                <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")}></Image>
+                {/* <HomeIcon width={24} height={24} />                 */}
+                </TouchableOpacity>
+            </Link>
             <View style={styles.content}>
                 <View style={styles.userInfo}>
 
                     <Text style={{marginEnd: 10, color: '#000', fontWeight: '600'}}>User Name</Text>
-                    <TouchableOpacity style={{marginEnd: 10}}>
-                        <Text style={{color:'#666'}}>@userID</Text>
-                    </TouchableOpacity>
+                    <Link href='../user_profile' asChild>
+                        <TouchableOpacity style={{marginEnd: 10}}>
+                            <Text style={{color:'#666'}}>@userID</Text>
+                        </TouchableOpacity>
+                    </Link>
                     <Text style={{marginEnd: 10, color: '#666'}}>•</Text>
                     <Text style={{marginEnd: 10, color: '#666'}}>2 hrs</Text>
 
                 </View>
                 <View style={styles.postTag}>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Event</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Safety</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Lost&Found</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Community</Text></TouchableOpacity>
                 </View>
                 <Text style={styles.textContent}>This is a sample post text. It can be a short description or a longer message.</Text>
                 <Image source={require("../images/dummyImg.jpg")} style={styles.postImg} />
@@ -40,10 +48,12 @@ export default function post() {
                         <Text>999</Text>
                     </TouchableOpacity>
                     {/* Comment button */}
-                    <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={require("../images/comment.svg")} style={styles.icon} />
-                        <Text>999</Text>
-                    </TouchableOpacity>
+                    <Link href='../post_detail' asChild>
+                        <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
+                            <Image source={require("../images/comment.svg")} style={styles.icon} />
+                            <Text>999</Text>
+                        </TouchableOpacity>
+                    </Link>
                     {/* Repost button */}
                     <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
                         <Image source={require("../images/repost.svg")} style={styles.icon} />
@@ -105,6 +115,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         flexWrap: 'wrap',
+        width: '100%',
+        height: 20,
         // marginBottom: 15
     },
 
@@ -121,12 +133,14 @@ const styles = StyleSheet.create({
         width: 'auto',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: 6,
+        // paddingBottom: 2,
         marginBottom: 5,
     },
 
     textContent:{
-        marginTop:15,
-        marginBottom: 20,    
+        marginTop: 60,
+        marginBottom: 35,    
     },
 
     postImg:{
