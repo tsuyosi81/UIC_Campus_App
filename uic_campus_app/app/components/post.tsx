@@ -1,7 +1,7 @@
 // import { Button } from '@react-navigation/elements';
 // import React from 'react';
 // import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
-
+import { Link } from "expo-router";
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -9,16 +9,20 @@ export default function post() {
   return ( 
     <View style={styles.postContainer}>
         <View style={styles.post}>
-            <TouchableOpacity>
-            <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")}></Image>
-            </TouchableOpacity>
+            <Link href='../user_profile' asChild>
+                <TouchableOpacity>
+                <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")}></Image>
+                </TouchableOpacity>
+            </Link>
             <View style={styles.content}>
                 <View style={styles.userInfo}>
 
                     <Text style={{marginEnd: 10, color: '#000', fontWeight: '600'}}>User Name</Text>
-                    <TouchableOpacity style={{marginEnd: 10}}>
-                        <Text style={{color:'#666'}}>@userID</Text>
-                    </TouchableOpacity>
+                    <Link href='../user_profile' asChild>
+                        <TouchableOpacity style={{marginEnd: 10}}>
+                            <Text style={{color:'#666'}}>@userID</Text>
+                        </TouchableOpacity>
+                    </Link>
                     <Text style={{marginEnd: 10, color: '#666'}}>•</Text>
                     <Text style={{marginEnd: 10, color: '#666'}}>2 hrs</Text>
 
@@ -40,10 +44,12 @@ export default function post() {
                         <Text>999</Text>
                     </TouchableOpacity>
                     {/* Comment button */}
-                    <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={require("../images/comment.svg")} style={styles.icon} />
-                        <Text>999</Text>
-                    </TouchableOpacity>
+                    <Link href='../post_detail' asChild>
+                        <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
+                            <Image source={require("../images/comment.svg")} style={styles.icon} />
+                            <Text>999</Text>
+                        </TouchableOpacity>
+                    </Link>
                     {/* Repost button */}
                     <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
                         <Image source={require("../images/repost.svg")} style={styles.icon} />

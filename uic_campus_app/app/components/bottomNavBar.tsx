@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import React, { useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -7,21 +8,32 @@ export default function BottomNavBar() {
       
   return (  
       <View style={styles.bottomNavigation}>
-        <TouchableOpacity>
-            <Image source={require("../images/home.svg")} style={styles.menu}/>
-        </TouchableOpacity>
+        <Link href='../social_feed' asChild>
+            <TouchableOpacity>
+                <Image source={require("../images/home.svg")} style={styles.menu}/>
+            </TouchableOpacity>
+        </Link>
+        <Link href='../search' asChild>
           <TouchableOpacity>
               <Image source={require("../images/search.svg")} style={styles.menu} />
           </TouchableOpacity>
+        </Link>
+        <Link href='../community' asChild>
           <TouchableOpacity>
               <Image source={require("../images/community.svg")} style={styles.menu} />
           </TouchableOpacity>
+        </Link>
+        <Link href='../event' asChild>
           <TouchableOpacity>
               <Image source={require("../images/events.svg")} style={styles.menu}/>
           </TouchableOpacity>
+        </Link>
+        <Link href='../dm' asChild>
           <TouchableOpacity>
               <Image source={require("../images/dm.svg")} style={styles.menu} />
           </TouchableOpacity>
+        </Link>
+
       </View>
   );
 }

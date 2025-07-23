@@ -1,7 +1,7 @@
 // import { Button } from '@react-navigation/elements';
 // import React from 'react';
 // import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
-
+import { Link } from "expo-router";
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -11,17 +11,21 @@ export default function Header() {
   return (  
       <View style={styles.header}>
           <View style={styles.topHeader}>
-            <TouchableOpacity>
-            <Image source={require("../images/dummyImg.jpg")} style={styles.profile}></Image>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-            <Image source={require("../images/smiley.png")} style={styles.logo}></Image>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-            <Image source={require('../images/notification.svg')} style={styles.notification}></Image>
-            </TouchableOpacity>
+            <Link href="/user_profile" asChild>
+                <TouchableOpacity>
+                <Image source={require("../images/dummyImg.jpg")} style={styles.profile}></Image>
+                </TouchableOpacity>
+            </Link>
+            <Link href="/social_feed" asChild>
+                <TouchableOpacity>
+                <Image source={require("../images/smiley.png")} style={styles.logo}></Image>
+                </TouchableOpacity>
+            </Link>
+            <Link href="/notifications" asChild>
+                <TouchableOpacity>  
+                <Image source={require('../images/notification.svg')} style={styles.notification}></Image>
+                </TouchableOpacity>
+            </Link>
           </View>
           
           <View style={styles.contentSelections}>
