@@ -59,6 +59,8 @@ const styles = StyleSheet.create({
 
     menu: {
         tintColor: '#8F8F8F',
+        // tintColor: undefined,
+        borderWidth: 1,
         width: 25,
         height: 25,
         resizeMode: 'contain',

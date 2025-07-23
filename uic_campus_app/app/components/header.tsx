@@ -57,11 +57,11 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        // backgroundColor: '#f8f8f8',
-        backgroundColor:'#fff',
+        backgroundColor: '#fff',
         justifyContent: 'center',
         // borderBottomWidth: 1,
         // borderBottomColor: '#ccc',
+        paddingTop: 50
         },
 
     topHeader:{
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     notification:{
         tintColor: 'gray',
         marginHorizontal: 15,
+        borderWidth: 1,
         width: 24,
         height: 24
     },

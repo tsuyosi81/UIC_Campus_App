@@ -4,6 +4,9 @@
 import { Link } from "expo-router";
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// ...existing code...
+// import HomeIcon from '../images/home.svg';
+// Usage:
 
 export default function post() {
   return ( 
@@ -12,6 +15,7 @@ export default function post() {
             <Link href='../user_profile' asChild>
                 <TouchableOpacity>
                 <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")}></Image>
+                {/* <HomeIcon width={24} height={24} />                 */}
                 </TouchableOpacity>
             </Link>
             <View style={styles.content}>
@@ -28,10 +32,10 @@ export default function post() {
 
                 </View>
                 <View style={styles.postTag}>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>POST TAG</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Event</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Safety</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Lost&Found</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Community</Text></TouchableOpacity>
                 </View>
                 <Text style={styles.textContent}>This is a sample post text. It can be a short description or a longer message.</Text>
                 <Image source={require("../images/dummyImg.jpg")} style={styles.postImg} />
@@ -111,6 +115,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         flexWrap: 'wrap',
+        width: '100%',
+        height: 20,
         // marginBottom: 15
     },
 
@@ -127,12 +133,14 @@ const styles = StyleSheet.create({
         width: 'auto',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: 6,
+        // paddingBottom: 2,
         marginBottom: 5,
     },
 
     textContent:{
-        marginTop:15,
-        marginBottom: 20,    
+        marginTop: 60,
+        marginBottom: 35,    
     },
 
     postImg:{
