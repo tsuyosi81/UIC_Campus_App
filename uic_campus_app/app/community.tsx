@@ -1,13 +1,92 @@
 
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import {initializeApp} from "firebase/app"
+import {getDatabase, ref, push, onValue} from "firebase/database"
+
+const appSettings = { 
+	databaseURL: "https://playground-b6d70-default-rtdb.firebaseio.com/"
+}
+
+const app = initializeApp(appSettings)
+const database = getDatabase(app)
+const communitiesInDB = ref(database, "communities")
+
+type Community = {
+  id: number;
+  name: string;
+  members_count: number;
+  created_at: Date;
+  short_description: string;
+}
+
+// const community1: Community = {
+//   id: 1,
+//   name: "Computer Science Majors",
+//   members_count: 300,
+//   created_at: new Date("2023-08-25T09:00:00Z"),
+//   short_description: "A community for students majoring in Computer Science to collaborate on projects, share resources, and network.",
+// };
+
+// const community2: Community = {
+//   id: 2,
+//   name: "Psychology Club",
+//   members_count: 150,
+//   created_at: new Date("2022-09-10T11:30:00Z"),
+//   short_description: "A club for psychology students and enthusiasts to discuss theories, conduct research, and host guest speakers.",
+// };
+
+// const community3: Community = {
+//   id: 3,
+//   name: "Environmental Science Society",
+//   members_count: 80,
+//   created_at: new Date("2023-01-15T14:00:00Z"),
+//   short_description: "A group dedicated to promoting sustainability and environmental awareness through projects and community outreach.",
+// };
+
+// push(communitiesInDB, community3)
+
+// const ForYouCommunities : Community[] = [
+//   community1, community2, community3,
+// ]
 
 export default function Community() {
+  const [communities, setCommunities] = React.useState<Community[]>([]);
+  React.useEffect(() => {
+    const unsubscribe = onValue(communitiesInDB, (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const dataArray: Community[] = Object.values(data).map((item: any) => ({
+            id: item.id,
+            name: item.name,
+            members_count: item.members_count,
+            created_at: new Date(item.created_at), 
+            short_description: item.short_description,
+          }));
+
+          setCommunities(dataArray); 
+
+          console.log("Current Task Entries:");
+          dataArray.forEach(entry => {
+            if (entry && entry.name) {
+              console.log(entry.name);
+            }
+          });
+
+        } else {
+          console.log("No data available at this Firebase path.");
+          setCommunities([]); 
+        }
+      });
+    }, []); 
+
+    // const forYouCommunities : Community[] = communities;
+
 
   return (
     <View style={styles.container}>
-      <CardCategoryContainer category='For You' posts={forYouPosts}/>
-      <CardCategoryContainer category='Other Groups' posts={forYouPosts}/>
+      <CardCategoryContainer category='For You' cards={communities}/>
+      <CardCategoryContainer category='Other Groups' cards={communities}/>
       <Footer />
     </View>
   );
@@ -19,29 +98,25 @@ const Footer = () => (
   </View>
 );
 
-type Post = {
-  id: number;
-  title: string;
-  content: string;
-};
+// type CommunityCard = {
+//   id: number;
+//   title: string;
+//   content: string;
+// };
 
-const forYouPosts: Post[] = [
-  { id: 1, title: 'Post 1', content: 'This is the content of post 1' },
-  { id: 2, title: 'Post 2', content: 'This is the content of post 2' },
-  { id: 3, title: 'Post 3', content: 'This is the content of post 3' },
-  { id: 4, title: 'Post 4', content: 'This is the content of post 4' },
-  { id: 5, title: 'Post 5', content: 'This is the content of post 5' },
-];
+// const ForYouCommunities: CommunityCard[] = [
+//   { id: 1, title: 'CommunityCard 1', content: 'This is the content of CommunityCard 1' },
+// ];
 
-const CardCategoryContainer = ({ category, posts }: { category: string; posts: Post[] }) => (
+const CardCategoryContainer = ({ category, cards }: { category: string; cards: Community[] }) => (
   <View style={styles.cardCategoryContainer}>
         <View style={styles.categoryHeader}>
           <Text style={styles.categoryTitle}>{category}</Text>
           <Text style={styles.viewAll}>View All</Text>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardContainer}>
-          {posts.map(post => (
-            <Card key={post.id} title={post.title} content={post.content} />
+          {cards.map(card => (
+            <Card key={card.id} title={card.name} content={card.short_description} />
           ))}
         </ScrollView>
       </View>
