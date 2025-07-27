@@ -20,13 +20,15 @@ type Community = {
   short_description: string;
 }
 
-// const community1: Community = {
-//   id: 1,
-//   name: "Computer Science Majors",
-//   members_count: 300,
-//   created_at: new Date("2023-08-25T09:00:00Z"),
-//   short_description: "A community for students majoring in Computer Science to collaborate on projects, share resources, and network.",
+// const community4: Community = {
+//   id: 4,
+//   name: "Gun Club",
+//   members_count: 30,
+//   created_at: new Date("2030-08-25T09:00:00Z"),
+//   short_description: "We Love Guns",
 // };
+
+// push(communitiesInDB, community4);
 
 // const community2: Community = {
 //   id: 2,
@@ -74,7 +76,7 @@ export default function Community() {
           });
 
         } else {
-          console.log("No data available at this Firebase path.");
+          console.error("No data available at this Firebase path.");
           setCommunities([]); 
         }
       });
@@ -97,16 +99,6 @@ const Footer = () => (
     <Text style={styles.footerText}>Footer Content</Text>
   </View>
 );
-
-// type CommunityCard = {
-//   id: number;
-//   title: string;
-//   content: string;
-// };
-
-// const ForYouCommunities: CommunityCard[] = [
-//   { id: 1, title: 'CommunityCard 1', content: 'This is the content of CommunityCard 1' },
-// ];
 
 const CardCategoryContainer = ({ category, cards }: { category: string; cards: Community[] }) => (
   <View style={styles.cardCategoryContainer}>
