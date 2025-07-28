@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set, serverTimestamp, onValue } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDV8nAAJqFVtxAZMvPTS7aXli3-XE7SNtE",
@@ -14,5 +14,15 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getDatabase(app)
 
-const database = getDatabase(app);
+export function writeMessage(groupID, name, message, imageURL, title) {
+  set(ref(db, 'messages/' + groupID), {
+    userName: name,
+    userMessage: message,
+    profilePic: imageURL,
+    userTitle: title,
+    timeStamp: serverTimestamp()
+  })
+}
+
