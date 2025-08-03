@@ -1,8 +1,8 @@
 
+import { initializeApp } from "firebase/app";
+import { getDatabase, onValue, ref } from "firebase/database";
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import {initializeApp} from "firebase/app"
-import {getDatabase, ref, push, onValue} from "firebase/database"
 
 const appSettings = { 
 	databaseURL: "https://playground-b6d70-default-rtdb.firebaseio.com/"
