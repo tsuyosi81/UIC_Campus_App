@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, serverTimestamp, onValue } from "firebase/database";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDV8nAAJqFVtxAZMvPTS7aXli3-XE7SNtE",
   authDomain: "uic-campus-app.firebaseapp.com",
@@ -14,10 +15,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app)
+const rtdb = getDatabase(app) //Realtime Database
 
 export function writeMessage(groupID, name, message, imageURL, title) {
-  set(ref(db, 'messages/' + groupID), {
+  set(ref(rtdb, 'messages/' + groupID), {
     userName: name,
     userMessage: message,
     profilePic: imageURL,
