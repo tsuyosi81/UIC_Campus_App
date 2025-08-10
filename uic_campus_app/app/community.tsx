@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { router, Link} from 'expo-router';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {initializeApp} from "firebase/app"
 import {getDatabase, ref, push, onValue} from "firebase/database"
 
 const appSettings = { 
-	databaseURL: "https://playground-b6d70-default-rtdb.firebaseio.com/"
+	databaseURL: "https://uic-campus-app-default-rtdb.firebaseio.com/"
 }
 
 const app = initializeApp(appSettings)
@@ -46,7 +47,7 @@ type Community = {
 //   short_description: "A group dedicated to promoting sustainability and environmental awareness through projects and community outreach.",
 // };
 
-// push(communitiesInDB, community3)
+// push(communitiesInDB, community2)
 
 // const ForYouCommunities : Community[] = [
 //   community1, community2, community3,
@@ -100,19 +101,37 @@ const Footer = () => (
   </View>
 );
 
-const CardCategoryContainer = ({ category, cards }: { category: string; cards: Community[] }) => (
-  <View style={styles.cardCategoryContainer}>
-        <View style={styles.categoryHeader}>
-          <Text style={styles.categoryTitle}>{category}</Text>
-          <Text style={styles.viewAll}>View All</Text>
-        </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardContainer}>
-          {cards.map(card => (
-            <Card key={card.id} title={card.name} content={card.short_description} />
-          ))}
-        </ScrollView>
+const CardCategoryContainer = ({ category, cards }: { category: string; cards: Community[] }) => {
+
+  // const handlePress = (card) => {
+  //   alert(`${card.title}`)
+  //   router.push({
+  //     pathname: "/community/[id]" as any,
+  //     params: {id: `${card.id}`}
+  //   });
+  // };
+
+  return (
+    <View style={styles.cardCategoryContainer}>
+      <View style={styles.categoryHeader}>
+        <Text style={styles.categoryTitle}>{category}</Text>
+        <Text style={styles.viewAll}>View All</Text>
       </View>
-)
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardContainer}>
+        {cards.map(card => (
+          <Link 
+            href={{
+            pathname: "/communities/[id]" as any,
+            params: {id: `${card.id}`}}
+          }
+           >
+            <Card title={card.name} content={card.short_description} />
+          </Link>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
 
 const Card = ({ title, content }: { title: string; content: string }) => (
   <View style={styles.card}>
@@ -122,9 +141,8 @@ const Card = ({ title, content }: { title: string; content: string }) => (
       <Text style={styles.cardContent}>{content}</Text>
     </View>
   </View>
-
-  
 );
+
 
 const styles = StyleSheet.create({
   container: {
