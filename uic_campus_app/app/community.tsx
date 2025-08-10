@@ -1,9 +1,9 @@
-
+import { initializeApp } from "firebase/app";
+import { getDatabase, onValue, ref } from "firebase/database";
 import React from 'react';
 import { router, Link} from 'expo-router';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import {initializeApp} from "firebase/app"
-import {getDatabase, ref, push, onValue} from "firebase/database"
+
 
 const appSettings = { 
 	databaseURL: "https://uic-campus-app-default-rtdb.firebaseio.com/"

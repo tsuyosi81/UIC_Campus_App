@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         height: 70, // Increased height for better image fit
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
+        // backgroundColor: 'gray',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
 
     menu: {
         tintColor: '#8F8F8F',
+        // tintColor: 'black',
         // tintColor: undefined,
         borderWidth: 1,
         width: 25,
