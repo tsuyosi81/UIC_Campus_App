@@ -1,16 +1,32 @@
-import { Text, View } from "react-native";
+// import { Button } from '@react-navigation/elements';
+// import React from 'react';
+// import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+
+import React from 'react';
+import { ScrollView, StyleSheet } from "react-native";
+import BottomNavBar from "./components/bottomNavBar.tsx";
+import Header from "./components/header.tsx";
+import Post from "./components/post.tsx";
+import PostBtn from "./components/postBtn.tsx";
 
 export default function SocialFeed() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>This is the social_feed.tsx
-      </Text>
-    </View>
+  return (  
+    <>
+        <Header/>
+        <ScrollView style={styles.feed}>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+        </ScrollView>
+        <PostBtn/>
+        <BottomNavBar/>
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+    feed:{},
+    postBtn:{},
+})
+
