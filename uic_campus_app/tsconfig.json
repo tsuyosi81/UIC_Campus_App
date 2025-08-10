@@ -4,6 +4,7 @@
     "strict": true,
     "noImplicitAny": false,
     "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
     "paths": {
       "@/*": [
         "./*"

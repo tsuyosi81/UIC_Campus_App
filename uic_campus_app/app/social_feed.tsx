@@ -26,6 +26,7 @@ export default function SocialFeed() {
 }
 
 const styles = StyleSheet.create({
-    feed:{}
+    feed:{},
+    postBtn:{},
 })
 
