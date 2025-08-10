@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import {
-  View,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
-  Image
+  View
 } from "react-native";
 
-import styles from "./components/css/profile_style"; 
+import styles from "./components/css/profile_style";
 import ProfilePicture from "./components/ProfilePicture";
 
 
@@ -23,6 +22,7 @@ export default function ProfileSetup() {
   const [gradYear, setGradYear] = useState("");
   const [major, setMajor] = useState("");
   const [homeTown, setHomeTown] = useState(""); // optional
+  const [password, setPassword] = useState(""); // optional
 
   const allRequiredFilled =
     firstName.trim() &&
@@ -91,6 +91,13 @@ export default function ProfileSetup() {
           style={styles.input}
           value={homeTown}
           onChangeText={setHomeTown}
+        />
+        <TextInput
+          placeholder="Password*"
+          placeholderTextColor="#888"
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
         />
       </ScrollView>
 
