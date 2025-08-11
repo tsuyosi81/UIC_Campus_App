@@ -16,6 +16,8 @@ const communitiesInDB = ref(database, "communities")
 type Community = {
   id: number;
   name: string;
+  handle: string;
+  background_image?: string;
   members_count: number;
   created_at: Date;
   short_description: string;
@@ -61,7 +63,9 @@ export default function Community() {
           const data = snapshot.val();
           const dataArray: Community[] = Object.values(data).map((item: any) => ({
             id: item.id,
+            handle: item.handle,
             name: item.name,
+            background_image: item.string,
             members_count: item.members_count,
             created_at: new Date(item.created_at), 
             short_description: item.short_description,
@@ -102,14 +106,6 @@ const Footer = () => (
 );
 
 const CardCategoryContainer = ({ category, cards }: { category: string; cards: Community[] }) => {
-
-  // const handlePress = (card) => {
-  //   alert(`${card.title}`)
-  //   router.push({
-  //     pathname: "/community/[id]" as any,
-  //     params: {id: `${card.id}`}
-  //   });
-  // };
 
   return (
     <View style={styles.cardCategoryContainer}>

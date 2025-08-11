@@ -1,7 +1,5 @@
-// import { Button } from '@react-navigation/elements';
-// import React from 'react';
-// import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
-import { initializeApp } from "firebase/app";
+
+import { initializeApp, getApps } from "firebase/app";
 import { getDatabase, onValue, ref } from "firebase/database";
 import React from 'react';
 import { ScrollView, StyleSheet } from "react-native";
@@ -107,7 +105,11 @@ const appSettings = {
 	databaseURL: "https://playground-b6d70-default-rtdb.firebaseio.com/"
 }
 
-const app = initializeApp(appSettings)
+let app;
+if (!getApps().length) {
+     app = initializeApp(appSettings);
+}
+else{app = getApps()[0];}
 const database = getDatabase(app)
 const communitiesInDB = ref(database, "posts")
 
