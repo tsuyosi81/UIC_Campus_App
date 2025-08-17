@@ -9,11 +9,13 @@ export default function CreatePosts() {
         alignItems: "center",
       }}
     >
+
       <Text>This is the create_posts.tsx
       </Text>
       <Text>
         made by justin
       </Text>
+      
     </View>
   );
 }
