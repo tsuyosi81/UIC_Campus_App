@@ -39,7 +39,6 @@ export default function post() {
                 </View>
                 <Text style={styles.textContent}>This is a sample post text. It can be a short description or a longer message.</Text>
                 <Image source={require("../images/dummyImg.jpg")} style={styles.postImg} />
-                
                 {/* POST ACTIONS */}
                 <View style={styles.postActions}>
                     {/* Like button */}
