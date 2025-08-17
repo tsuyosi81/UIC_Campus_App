@@ -1,73 +1,81 @@
-// import { Button } from '@react-navigation/elements';
-// import React from 'react';
-// import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { Link } from "expo-router";
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-// ...existing code...
-// import HomeIcon from '../images/home.svg';
-// Usage:
 
-export default function post() {
-  return ( 
-    <View style={styles.postContainer}>
-        <View style={styles.post}>
-            <Link href='../user_profile' asChild>
-                <TouchableOpacity>
-                <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")}></Image>
-                {/* <HomeIcon width={24} height={24} />                 */}
-                </TouchableOpacity>
-            </Link>
-            <View style={styles.content}>
-                <View style={styles.userInfo}>
 
-                    <Text style={{marginEnd: 10, color: '#000', fontWeight: '600'}}>User Name</Text>
-                    <Link href='../user_profile' asChild>
-                        <TouchableOpacity style={{marginEnd: 10}}>
-                            <Text style={{color:'#666'}}>@userID</Text>
-                        </TouchableOpacity>
-                    </Link>
-                    <Text style={{marginEnd: 10, color: '#666'}}>•</Text>
-                    <Text style={{marginEnd: 10, color: '#666'}}>2 hrs</Text>
+interface PostProps {
+    post: {
+        post_id: number; // INT PRIMARY KEY AUTO_INCREMENT
+        user_id: number; // INT NOT NULL
+        community_id?: number | null; // INT DEFAULT NULL
+        post_type: 'text' | 'photo' | 'video' | 'crime' | 'event' | 'date'; // ENUM with default 'text'
+        content_text?: string; // TEXT
+        media_url?: string; // VARCHAR(255)
+        created_at: Date; // TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        likes_count: number; // Count of likes
+        tags: string[]; // Array of tags
+        comments: string[]; // Array of comments
+    };
+}
 
-                </View>
-                <View style={styles.postTag}>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Event</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Safety</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Lost&Found</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log('Post Tag Pressed')}><Text style={styles.tag}>Community</Text></TouchableOpacity>
-                </View>
-                <Text style={styles.textContent}>This is a sample post text. It can be a short description or a longer message.</Text>
-                <Image source={require("../images/dummyImg.jpg")} style={styles.postImg} />
-                {/* POST ACTIONS */}
-                <View style={styles.postActions}>
-                    {/* Like button */}
-                    <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={require("../images/likes.svg")} style={styles.icon} />
-                        <Text>999</Text>
-                    </TouchableOpacity>
-                    {/* Comment button */}
-                    <Link href='../post_detail' asChild>
-                        <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                            <Image source={require("../images/comment.svg")} style={styles.icon} />
-                            <Text>999</Text>
-                        </TouchableOpacity>
-                    </Link>
-                    {/* Repost button */}
-                    <TouchableOpacity style={{marginRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={require("../images/repost.svg")} style={styles.icon} />
-                        <Text>999</Text>
-                    </TouchableOpacity>
-                    {/* Share button */}
+export default function Post({ post }: PostProps) {
+    return ( 
+        <View style={styles.postContainer}>
+            <View style={styles.post}>
+                <Link href='../user_profile' asChild>
                     <TouchableOpacity>
-                        <Image source={require("../images/share.svg")} style={styles.icon} />
+                        <Image style={styles.userProfile} source={require("../images/dummyImg.jpg")} />
                     </TouchableOpacity>
+                </Link>
+                <View style={styles.content}>
+                    <View style={styles.userInfo}>
+                        <Text style={{ marginEnd: 10, color: '#000', fontWeight: '600' }}>{post.user_id}</Text>
+                        <Link href='../user_profile' asChild>
+                            <TouchableOpacity style={{ marginEnd: 10 }}>
+                                <Text style={{ color: '#666' }}>@{post.user_id}</Text>
+                            </TouchableOpacity>
+                        </Link>
+                        <Text style={{ marginEnd: 10, color: '#666' }}>•</Text>
+                        <Text style={{ marginEnd: 10, color: '#666' }}>{new Date(post.created_at).toLocaleTimeString()}</Text>
+                    </View>
+                    <View style={styles.postTag}>
+                        {post.tags.map((tag, index) => (
+                            <TouchableOpacity key={index} onPress={() => alert('Post Tag Pressed')}>
+                                <Text style={styles.tag}>{tag}</Text>
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                    <Text style={styles.textContent}>{post.content_text}</Text>
+                    {post.media_url && <Image source={{ uri: post.media_url }} style={styles.postImg} />}
+                    
+                    {/* POST ACTIONS */}
+                    <View style={styles.postActions}>
+                        {/* Like button */}
+                        <TouchableOpacity style={{ marginRight: 10, flexDirection: 'row', alignItems: 'center' }}>
+                            <Image source={require("../images/likes.svg")} style={styles.icon} />
+                            <Text>{post.likes_count}</Text>
+                        </TouchableOpacity>
+                        {/* Comment button */}
+                        <Link href='../post_detail' asChild>
+                            <TouchableOpacity style={{ marginRight: 10, flexDirection: 'row', alignItems: 'center' }}>
+                                <Image source={require("../images/comment.svg")} style={styles.icon} />
+                                <Text>{post.comments.length}</Text> {/* Assuming comments are an array */}
+                            </TouchableOpacity>
+                        </Link>
+                        {/* Repost button */}
+                        <TouchableOpacity style={{ marginRight: 10, flexDirection: 'row', alignItems: 'center' }}>
+                            <Image source={require("../images/repost.svg")} style={styles.icon} />
+                            <Text>999</Text> {/* Placeholder for repost count */}
+                        </TouchableOpacity>
+                        {/* Share button */}
+                        <TouchableOpacity>
+                            <Image source={require("../images/share.svg")} style={styles.icon} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-
         </View>
-    </View>
-);
+    );
 }
 
 const styles = StyleSheet.create({

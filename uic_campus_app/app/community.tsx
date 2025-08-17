@@ -1,11 +1,12 @@
-
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref } from "firebase/database";
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { router, Link} from 'expo-router';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
 
 const appSettings = { 
-	databaseURL: "https://playground-b6d70-default-rtdb.firebaseio.com/"
+	databaseURL: "https://uic-campus-app-default-rtdb.firebaseio.com/"
 }
 
 const app = initializeApp(appSettings)
@@ -15,18 +16,22 @@ const communitiesInDB = ref(database, "communities")
 type Community = {
   id: number;
   name: string;
+  handle: string;
+  background_image?: string;
   members_count: number;
   created_at: Date;
   short_description: string;
 }
 
-// const community1: Community = {
-//   id: 1,
-//   name: "Computer Science Majors",
-//   members_count: 300,
-//   created_at: new Date("2023-08-25T09:00:00Z"),
-//   short_description: "A community for students majoring in Computer Science to collaborate on projects, share resources, and network.",
+// const community4: Community = {
+//   id: 4,
+//   name: "Gun Club",
+//   members_count: 30,
+//   created_at: new Date("2030-08-25T09:00:00Z"),
+//   short_description: "We Love Guns",
 // };
+
+// push(communitiesInDB, community4);
 
 // const community2: Community = {
 //   id: 2,
@@ -44,7 +49,7 @@ type Community = {
 //   short_description: "A group dedicated to promoting sustainability and environmental awareness through projects and community outreach.",
 // };
 
-// push(communitiesInDB, community3)
+// push(communitiesInDB, community2)
 
 // const ForYouCommunities : Community[] = [
 //   community1, community2, community3,
@@ -58,7 +63,9 @@ export default function Community() {
           const data = snapshot.val();
           const dataArray: Community[] = Object.values(data).map((item: any) => ({
             id: item.id,
+            handle: item.handle,
             name: item.name,
+            background_image: item.string,
             members_count: item.members_count,
             created_at: new Date(item.created_at), 
             short_description: item.short_description,
@@ -74,7 +81,7 @@ export default function Community() {
           });
 
         } else {
-          console.log("No data available at this Firebase path.");
+          console.error("No data available at this Firebase path.");
           setCommunities([]); 
         }
       });
@@ -98,29 +105,29 @@ const Footer = () => (
   </View>
 );
 
-// type CommunityCard = {
-//   id: number;
-//   title: string;
-//   content: string;
-// };
+const CardCategoryContainer = ({ category, cards }: { category: string; cards: Community[] }) => {
 
-// const ForYouCommunities: CommunityCard[] = [
-//   { id: 1, title: 'CommunityCard 1', content: 'This is the content of CommunityCard 1' },
-// ];
-
-const CardCategoryContainer = ({ category, cards }: { category: string; cards: Community[] }) => (
-  <View style={styles.cardCategoryContainer}>
-        <View style={styles.categoryHeader}>
-          <Text style={styles.categoryTitle}>{category}</Text>
-          <Text style={styles.viewAll}>View All</Text>
-        </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardContainer}>
-          {cards.map(card => (
-            <Card key={card.id} title={card.name} content={card.short_description} />
-          ))}
-        </ScrollView>
+  return (
+    <View style={styles.cardCategoryContainer}>
+      <View style={styles.categoryHeader}>
+        <Text style={styles.categoryTitle}>{category}</Text>
+        <Text style={styles.viewAll}>View All</Text>
       </View>
-)
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardContainer}>
+        {cards.map(card => (
+          <Link 
+            href={{
+            pathname: "/communities/[id]" as any,
+            params: {id: `${card.id}`}}
+          }
+           >
+            <Card title={card.name} content={card.short_description} />
+          </Link>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
 
 const Card = ({ title, content }: { title: string; content: string }) => (
   <View style={styles.card}>
@@ -130,9 +137,8 @@ const Card = ({ title, content }: { title: string; content: string }) => (
       <Text style={styles.cardContent}>{content}</Text>
     </View>
   </View>
-
-  
 );
+
 
 const styles = StyleSheet.create({
   container: {
