@@ -4,9 +4,9 @@
 
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import BottomNavBar from './components/bottomNavBar.tsx';
-import Header2 from "./components/header2.tsx";
-import Post from "./components/post.tsx";
+import BottomNavBar from './components/bottomNavBar';
+import Header2 from "./components/header2";
+import Post from "./components/post";
 
 export default function PostDetail() {
   return ( 

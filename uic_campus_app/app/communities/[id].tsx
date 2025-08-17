@@ -1,20 +1,13 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref } from "firebase/database";
+import { useLocalSearchParams } from 'expo-router';
+import { onValue, ref } from "firebase/database";
 import React from 'react';
-import { router, Link, useLocalSearchParams} from 'expo-router';
-import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
-import BottomNavBar from "../components/bottomNavBar.tsx";
-import Header from "../components/header.tsx";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Post from "../components/post.tsx";
-import PostBtn from "../components/postBtn.tsx";
+import { database } from "../firebaseConfig";
 
-const appSettings = { 
-	databaseURL: "https://uic-campus-app-default-rtdb.firebaseio.com/"
-}
+const communitiesInDB = ref(database, "communities");
 
-const app = initializeApp(appSettings)
-const database = getDatabase(app)
-const communitiesInDB = ref(database, "communities")
+
 
 interface Post {
     post_id: number; // INT PRIMARY KEY AUTO_INCREMENT

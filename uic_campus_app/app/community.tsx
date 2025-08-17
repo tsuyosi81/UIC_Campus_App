@@ -1,17 +1,10 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref } from "firebase/database";
+import { Link } from 'expo-router';
+import { onValue, ref } from "firebase/database";
 import React from 'react';
-import { router, Link} from 'expo-router';
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { database } from "./firebaseConfig"; // adjust path if needed
 
-
-const appSettings = { 
-	databaseURL: "https://uic-campus-app-default-rtdb.firebaseio.com/"
-}
-
-const app = initializeApp(appSettings)
-const database = getDatabase(app)
-const communitiesInDB = ref(database, "communities")
+const communitiesInDB = ref(database, "communities");
 
 type Community = {
   id: number;
