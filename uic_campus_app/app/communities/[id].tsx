@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref } from "firebase/database";
 import React from 'react';
 import { router, Link, useLocalSearchParams} from 'expo-router';
-import { ScrollView, StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
 import BottomNavBar from "../components/bottomNavBar.tsx";
 import Header from "../components/header.tsx";
 import Post from "../components/post.tsx";
@@ -150,91 +150,121 @@ export default function CommunityHome(){
 
         const community = communities.find(item => item.id === Number(params.id));
         if(!community){
-            return <Text>Error</Text>
+            return <Text>Error, Cannot Find Community</Text>
         }
     
         console.log(community);
     return (
-        <View>
-            
             <ScrollView style={{ flex: 1 }}>  
-            <View style = {styles.communityDescContainer} >
-                <View style = {styles.background}></View>
-                <Text style = {styles.title}>{`${community.name}`}</Text>
-                <Text style = {styles.handle}>{`@${community.handle}`}</Text>
-                <Text style = {styles.desc}>{`${community.short_description}`}</Text>
-                <View style = {styles.membersAndJoin}>
-                    <View style = {styles.members}><Text>Members Icon</Text></View> 
-                    <TouchableOpacity style = {styles.joinButton}><Text>Join</Text></TouchableOpacity> 
-                </View>
-            </View>  
+            <CommunityHeader community={community}/>
             {
                 posts.map(item => (
                     <Post key={item.post_id} post={item} />
                 ))
             }
             </ScrollView>
-            <PostBtn/>
-            <BottomNavBar/>
-        </View>
     )
 
 }
 
+interface CommunityHeaderProps {
+    community: Community;
+}
+
+const CommunityHeader: React.FC<CommunityHeaderProps> = ({ community }) => {
+    return (
+        <View style={styles.communityDescContainer}>
+            <View style={styles.background}></View>
+            <View style={styles.communityInfoContainer}>
+                <Text style={styles.title}>{community.name}</Text>
+                <Text style={styles.handle}>{`@${community.handle}`}</Text>
+                <Text style={styles.desc}>{community.short_description}</Text>
+                <View style={styles.membersAndJoin}>
+                    <View style={styles.membersContainer}>
+                        <View style={styles.membersIconContainer}>
+                            <Image source={require("../images/profile.png")}
+                            style={styles.memberIcon} />
+                            <Image source={require("../images/profile.png")}
+                            style={styles.memberIcon} />
+                            <Image source={require("../images/profile.png")}
+                            style={styles.memberIcon} />
+                        </View>
+                        <Text  style={styles.memberText}>0 members</Text>
+                    </View> 
+                    <TouchableOpacity style={styles.joinButton}>
+                        <Image source={require("../images/join.png")}
+                        style={styles.joinIcon} />
+                        <Text style={styles.joinButtonText}>Join</Text></TouchableOpacity> 
+                </View>
+            </View>
+        </View>  
+    );
+};
+
 const styles = StyleSheet.create({
     communityDescContainer: {
-        padding: 16,
-        backgroundColor: '#f9f9f9', // Light background for contrast
-        // backgroundColor: 'red',
+        backgroundColor: '#fff',
     },
     background: {
         height: 100,
-        backgroundColor: '#e0e0e0', // Subtle background color
+        backgroundColor: '#e0e0e0', 
+    },
+    communityInfoContainer:{
+        padding: 16,
+        borderBottomColor: '#e2e2e2ff',
+        borderBottomWidth: 1,
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#333', // Dark text for title
-        marginTop: 16,
+        color: '#333', 
     },
     handle: {
         fontSize: 16,
-        color: '#666', // Lighter color for handle
-        marginVertical: 4,
+        color: '#666', 
     },
     desc: {
         fontSize: 14,
         color: '#444',
-        marginVertical: 8,
     },
     membersAndJoin: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 16,
+        marginTop: 32,
     },
-    members: {
-        flex: 1,
-        padding: 8,
-        backgroundColor: '#fff',
-
-        borderRadius: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        elevation: 1,
-    },
-    joinButton: {
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        backgroundColor: '#007bff', // Primary button color
-        borderRadius: 4,
+    membersContainer: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
+    membersIconContainer: {
+        flexDirection: 'row', 
+        alignItems: 'center',
+    },
+    memberIcon: {
+        width: 40, 
+        height: 40, 
+    },
+    memberText: {
+        marginTop: -6, 
+        marginLeft: 10,
+    },
+    joinButton: {
+        padding: 10,
+        backgroundColor: '#56636F', 
+        width: 74,
+        borderRadius: 8,
+        flexDirection: 'row', 
+        justifyContent: 'space-around', 
+        alignItems: 'center',
+    },
+    joinIcon: {
+        
+    },
     joinButtonText: {
-        color: '#fff', // White text for button
-        fontWeight: 'bold',
+        color: '#fff',
+        marginTop: -2, 
     },
     membersCount: {
         fontSize: 14,
