@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { useAuth } from '../contexts/AuthContext';
+import { router } from 'expo-router';
 
 const LoginScreen: React.FC = () => {
-  // State to store the email input and any error messages
+  const { signIn } = useAuth();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Function to handle when user clicks "Continue"
-  const handleContinue = () => {
+  const handleContinue = async () => {
     // Clear any previous errors
     setError("");
+    setLoading(true);
     
     // Check if email is empty
     if (!email) {
       setError("Please enter your email address");
+      setLoading(false);
+      return;
+    }
+
+    if (!password) {
+      setError("Please enter your password");
+      setLoading(false);
       return;
     }
     
@@ -21,11 +32,19 @@ const LoginScreen: React.FC = () => {
     const emailRegex = /^[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?$/;
     if (!emailRegex.test(email)) {
       setError("Please enter a valid email address");
+      setLoading(false);
       return;
     }
     
-    // email is valid, inspect browser console
-    console.log("Email is valid:", email);
+    try {
+      await signIn(email, password);
+      // Navigate to the sign in check page on successful login
+      router.push('/signInCheck');
+    } catch (error: any) {
+      setError(error.message || "Login failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -39,6 +58,17 @@ const LoginScreen: React.FC = () => {
         keyboardType="email-address"
         value={email}
         onChangeText={setEmail}
+        onSubmitEditing={handleContinue}
+        returnKeyType="done"
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        autoCapitalize="none"
+        keyboardType="visible-password"
+        value={password}
+        onChangeText={setPassword}
         onSubmitEditing={handleContinue}
         returnKeyType="done"
       />
@@ -59,8 +89,18 @@ const LoginScreen: React.FC = () => {
 
       {/* Continue button and call to check email validation */}
       <View style={styles.button}>
-        <Button title="Continue" onPress={handleContinue} />
-          
+        <Button 
+          title={loading ? "Signing In..." : "Continue"} 
+          onPress={handleContinue} 
+          disabled={loading}
+        />
+      </View>
+
+      <View style={styles.button}>
+        <Button 
+          title="Don't have an account? Sign Up" 
+          onPress={() => router.push('/start')}
+        />
       </View>
     </View>
   );
