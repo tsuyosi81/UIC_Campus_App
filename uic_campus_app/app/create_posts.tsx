@@ -70,7 +70,7 @@ export default function CreatePosts() {
                 <TouchableOpacity
                   key={option}
                   onPress={() => handleAddTag(option)}
-                  style={{ padding: 12 }}
+                  style={{ padding: 12}}
                   disabled={tags.includes(option)}
                 >
                   <Text style={{ color: tags.includes(option) ? "#aaa" : "#000" }}>
@@ -206,5 +206,5 @@ const styles = StyleSheet.create({
     elevation: 3 
   },
 
-  
+
 });

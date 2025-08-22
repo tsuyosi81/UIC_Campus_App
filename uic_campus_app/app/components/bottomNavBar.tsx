@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
 
     menu: {
-        tintColor: '#8F8F8F',
+        // tintColor: '#8F8F8F',
         // tintColor: 'black',
         // tintColor: undefined,
         borderWidth: 1,
