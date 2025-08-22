@@ -4,6 +4,7 @@
 import { Link } from "expo-router";
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Notification from "../images/notification.svg";
 
 export default function Header() {
   const [activeTab, setActiveTab] = useState('Feed')
@@ -23,7 +24,8 @@ export default function Header() {
             </Link>
             <Link href="/notifications" asChild>
                 <TouchableOpacity>  
-                <Image source={require('../images/notification.svg')} style={styles.notification}></Image>
+                <Notification width={24} height={24} fill="#8F8F8F"/>
+                {/* <Image source={require("../images/notification.png")} style={styles.notification}></Image> */}
                 </TouchableOpacity>
             </Link>
           </View>

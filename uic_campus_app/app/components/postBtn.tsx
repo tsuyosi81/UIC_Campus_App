@@ -20,7 +20,7 @@ export default function postBtn() {
 const styles = StyleSheet.create({
     postBtnContainer:{
         position: 'absolute',
-        bottom: 85,
+        bottom: 65,
         right: 15,
         zIndex: 1000,
         alignItems: 'center',
