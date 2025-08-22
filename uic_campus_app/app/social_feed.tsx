@@ -1,6 +1,6 @@
 
-import { initializeApp, getApps } from "firebase/app";
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getApps, initializeApp } from "firebase/app";
+import { getDatabase, ref } from "firebase/database";
 import React from 'react';
 import { ScrollView, StyleSheet } from "react-native";
 import BottomNavBar from "./components/bottomNavBar.tsx";
