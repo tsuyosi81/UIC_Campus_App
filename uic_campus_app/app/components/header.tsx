@@ -3,7 +3,7 @@
 // import { Button, Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { Link } from "expo-router";
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import Notification from "../images/notification.svg";
 
 export default function Header() {
@@ -24,13 +24,13 @@ export default function Header() {
             </Link>
             <Link href="/notifications" asChild>
                 <TouchableOpacity>  
-                <Notification width={24} height={24} fill="#8F8F8F"/>
+                <Notification style={styles.notification} fill="#8F8F8F"/>
                 {/* <Image source={require("../images/notification.png")} style={styles.notification}></Image> */}
                 </TouchableOpacity>
             </Link>
           </View>
           
-          <View style={styles.contentSelections}>
+          {/* <View style={styles.contentSelections}>
             <TouchableOpacity onPress={()=>setActiveTab('Feed')}>
                 <Text style={styles.selection}>Feed</Text>
                 {activeTab === 'Feed' && <View style={styles.underline} />}
@@ -47,7 +47,7 @@ export default function Header() {
                 <Text style={styles.selection}>Safety</Text>
                 {activeTab === 'Safety' && <View style={styles.underline} />}
             </TouchableOpacity>
-          </View>
+          </View> */}
       </View>
   );
 }
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         // borderBottomWidth: 1,
         // borderBottomColor: '#ccc',
-        paddingTop: 50
+        // paddingTop: 50
         },
 
     topHeader:{
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         width: 38,
         height: 38,
-        borderWidth: 1,
-        borderColor: '#ccc',
+        // borderWidth: 1,
+        // borderColor: '#ccc',
         borderRadius: '100%'
     },
 
@@ -88,9 +88,7 @@ const styles = StyleSheet.create({
     },
 
     notification:{
-        tintColor: 'gray',
         marginHorizontal: 15,
-        borderWidth: 1,
         width: 24,
         height: 24
     },

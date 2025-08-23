@@ -1,12 +1,15 @@
 
 import { getApps, initializeApp } from "firebase/app";
 import { getDatabase, ref } from "firebase/database";
-import React from 'react';
-import { ScrollView, StyleSheet } from "react-native";
+import React, { useRef, useState } from 'react';
+import { Animated, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import PagerView from 'react-native-pager-view';
 import BottomNavBar from "./components/bottomNavBar.tsx";
 import Header from "./components/header.tsx";
 import Post from "./components/post.tsx";
 import PostBtn from "./components/postBtn.tsx";
+
+const TAB_LABELS=['Feed', 'Following', 'Lost&Found', 'Safety'];
 
 interface Post {
     post_id: number; // INT PRIMARY KEY AUTO_INCREMENT
@@ -114,24 +117,122 @@ const database = getDatabase(app)
 const communitiesInDB = ref(database, "posts")
 
 export default function SocialFeed() {
-  return (  
-    <>
-        <Header/>
-        <ScrollView style={styles.feed}>
-        {
-            posts.map(item => (
-                <Post key={item.post_id} post={item} />
-            ))
+  const headerAnim = useRef(new Animated.Value(0)).current; // 0: visible, -100: hidden
+  const footerAnim = useRef(new Animated.Value(0)).current;
+  const [hidden, setHidden] = useState(false);
+  const [tabIndex, setTabIndex] = useState(0);
+
+  let lastOffsetY = 0;
+
+  const handleScroll = (event: any) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    if (offsetY > lastOffsetY + 10 && !hidden) {
+      // Scroll down: hide
+      Animated.timing(headerAnim, { toValue: -100, duration: 250, useNativeDriver: true }).start();
+      Animated.timing(footerAnim, { toValue: 100, duration: 250, useNativeDriver: true }).start();
+      setHidden(true);
+    } else if (offsetY < lastOffsetY - 10 && hidden) {
+      // Scroll up: show
+      Animated.timing(headerAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start();
+      Animated.timing(footerAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start();
+      setHidden(false);
+    }
+    lastOffsetY = offsetY;
+  };
+
+  const toggleHeaderFooter = () => {
+    if (hidden) {
+      Animated.timing(headerAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start();
+      Animated.timing(footerAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start();
+      setHidden(false);
+    } else {
+      Animated.timing(headerAnim, { toValue: -100, duration: 250, useNativeDriver: true }).start();
+      Animated.timing(footerAnim, { toValue: 100, duration: 250, useNativeDriver: true }).start();
+      setHidden(true);
+    }
+  };
+
+  const getFilteredPosts = (tab: string) => {
+    switch(tab) {
+        case 'Feed':
+            return posts;
+        case 'Community':
+            return posts.filter(post => post.user_id % 2 === 0); // Example filter
+        case 'Lost&Found':
+            return posts.filter(post => post.tags.includes('lost') || post.tags.includes('found'));
+        case 'Safety':
+            return posts.filter(post => post.post_type === 'crime' || post.tags.includes('safety'));
+        default:
+            return posts;
         }
-        </ScrollView>
-        <PostBtn/>
-        <BottomNavBar/>
-    </>
+};
+
+  return (
+    <View style={{ flex: 1 }}>
+      {/* Animated Header */}
+      <Animated.View style={{ position: "absolute", top:0, left:0, right:0, transform: [{ translateY: headerAnim }], zIndex: 10 }}>
+      <Header />
+        <View>
+          {/* Tab Bar */}
+          <View style={{ flexDirection: 'row', backgroundColor: '#fff'}}>
+            {TAB_LABELS.map((label, idx) => (
+              <TouchableOpacity
+                key={label}
+                style={{ flex: 1, padding: 9, borderBottomWidth: tabIndex === idx ? 2 : 0, borderBottomColor: 'dodgerblue' }}
+                onPress={() => setTabIndex(idx)}
+              >
+                <Animated.Text style={{ textAlign: 'center', color: tabIndex === idx ? 'dodgerblue' : '#888', fontWeight: tabIndex === idx ? 'bold' : 'normal' }}>
+                  {label}
+                </Animated.Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </Animated.View>
+
+      {/* PagerView for horizontal swiping */}
+      <PagerView
+        style={{ flex: 1}} // adjust marginTop to match header height
+        initialPage={0}
+        scrollEnabled
+        onPageSelected={e => setTabIndex(e.nativeEvent.position)}
+        keyboardDismissMode="on-drag"
+      >
+        {TAB_LABELS.map((tab, idx) => (
+          <View key={tab} style={{ flex: 1 }}>
+            <ScrollView
+              style={styles.feed}
+              onScroll={handleScroll}
+              scrollEventThrottle={16}
+            >
+              {getFilteredPosts(tab).map(item => (
+                <Post key={item.post_id} post={item} />
+              ))}
+            </ScrollView>
+          </View>
+        ))}
+      </PagerView>
+
+      {/* Post Button */}
+      <PostBtn />
+
+      {/* Animated Footer */}
+      <Animated.View style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        transform: [{ translateY: footerAnim }],
+        zIndex: 10
+      }}>
+        <BottomNavBar />
+      </Animated.View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-    feed:{},
+    feed:{flex: 1},
     postBtn:{},
 })
 
