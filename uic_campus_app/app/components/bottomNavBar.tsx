@@ -14,27 +14,27 @@ export default function BottomNavBar() {
     <View style={styles.bottomNavigation}>
       <Link href='../social_feed' asChild>
         <TouchableOpacity>
-          <HomeIcon width={24} height={24} fill="#8F8F8F"/>
+          <HomeIcon width={28} height={28} fill="#8F8F8F"/>
         </TouchableOpacity>
       </Link>
       <Link href='../search' asChild>
         <TouchableOpacity>
-          <SearchIcon width={24} height={24} fill="#8F8F8F" />
+          <SearchIcon width={28} height={28} fill="#8F8F8F" />
         </TouchableOpacity>
       </Link>
       <Link href='../community' asChild>
         <TouchableOpacity>
-          <CommunityIcon width={24} height={24} fill="#8F8F8F"/>
+          <CommunityIcon width={28} height={28} fill="#8F8F8F"/>
         </TouchableOpacity>
       </Link>
       <Link href='../event' asChild>
         <TouchableOpacity>
-          <EventsIcon width={24} height={24} fill="#8F8F8F"/>
+          <EventsIcon width={28} height={28} fill="#8F8F8F"/>
         </TouchableOpacity>
       </Link>
       <Link href='../dm' asChild>
         <TouchableOpacity>
-          <DmIcon width={24} height={24} fill="#8F8F8F"/>
+          <DmIcon width={28} height={28} fill="#8F8F8F"/>
         </TouchableOpacity>
       </Link>
     </View>
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 55,
-    backgroundColor: 'rgba(248, 248, 248, 0.7)',
-    backdropFilter: 'blur(3px)',
+    height: 65,
+    backgroundColor: 'rgb(255, 255, 255)',
+    // backdropFilter: 'blur(3px)',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

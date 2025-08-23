@@ -58,21 +58,21 @@ export default function Post({ post }: PostProps) {
                     )}
                     <View style={styles.postActions}>
                         <TouchableOpacity style={styles.actionBtn}>
-                            <Likes width={15} height={15} fill="#8F8F8F"/>
+                            <Likes style={styles.actionBtn} width={15} height={15} fill="#8F8F8F"/>
                             <Text>{post.likes_count}</Text>
                         </TouchableOpacity>
                         <Link href='../post_detail' asChild>
                             <TouchableOpacity style={styles.actionBtn}>
-                                <Comment width={15} height={15} fill="#8F8F8F"/>
+                                <Comment style={styles.actionBtn} width={15} height={15} fill="#8F8F8F"/>
                                 <Text>{post.comments.length}</Text>
                             </TouchableOpacity>
                         </Link>
                         <TouchableOpacity style={styles.actionBtn}>
-                            <Repost width={15} height={15} fill="#8F8F8F"/>
+                            <Repost style={styles.actionBtn} width={15} height={15} fill="#8F8F8F"/>
                             <Text>999</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.actionBtn}>
-                            <Share width={15} height={15} fill="#8F8F8F"/>
+                            <Share style={styles.actionBtn} width={15} height={15} fill="#8F8F8F"/>
                             <Text>Share</Text>
                         </TouchableOpacity>
                     </View>
@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 24,
-        borderWidth: 1,
-        borderColor: '#ccc',
+        // borderWidth: 1,
+        // borderColor: '#ccc',
         marginRight: 12,
         marginTop: 10,
     },
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     actionBtn: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: 18,
+        marginRight: 5,
     },
     
 });
