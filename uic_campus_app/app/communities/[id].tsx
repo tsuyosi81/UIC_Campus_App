@@ -1,12 +1,12 @@
 import { useLocalSearchParams } from 'expo-router';
 import { onValue, ref } from "firebase/database";
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import Post from "../components/post.tsx";
 import { database } from "../firebaseConfig";
+import { useAuth } from "../../contexts/AuthContext";
 
 const communitiesInDB = ref(database, "communities");
-
 
 
 interface Post {
@@ -108,7 +108,15 @@ type Community = {
   short_description: string;
 }
 
+
+
 export default function CommunityHome(){
+    const { user, loading } = useAuth();
+    if (loading) {
+        return (
+            <Text style={styles.title}>Loading...</Text>
+        );
+    }
   const [communities, setCommunities] = React.useState<Community[]>([]);
     const params = useLocalSearchParams<{id: string}>();
     React.useEffect(() => {
@@ -147,6 +155,8 @@ export default function CommunityHome(){
         }
     
         console.log(community);
+
+        
     return (
             <ScrollView style={{ flex: 1 }}>  
             <CommunityHeader community={community}/>
@@ -160,11 +170,30 @@ export default function CommunityHome(){
 
 }
 
+const handleJoin = () => {
+    const { user, loading } = useAuth();
+    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHH");
+    console.log(user?.email);
+}
+
 interface CommunityHeaderProps {
     community: Community;
 }
 
+const handleDelete = () => {
+}
+
+const DeleteCommunity = () => {
+    return(
+    <Button
+        title='Delete'
+        onPress={handleDelete}
+        />
+    )
+} 
+
 const CommunityHeader: React.FC<CommunityHeaderProps> = ({ community }) => {
+    
     return (
         <View style={styles.communityDescContainer}>
             <View style={styles.background}></View>
@@ -172,6 +201,9 @@ const CommunityHeader: React.FC<CommunityHeaderProps> = ({ community }) => {
                 <Text style={styles.title}>{community.name}</Text>
                 <Text style={styles.handle}>{`@${community.handle}`}</Text>
                 <Text style={styles.desc}>{community.short_description}</Text>
+
+                {/* <DeleteCommunity /> */}
+
                 <View style={styles.membersAndJoin}>
                     <View style={styles.membersContainer}>
                         <View style={styles.membersIconContainer}>
@@ -182,9 +214,9 @@ const CommunityHeader: React.FC<CommunityHeaderProps> = ({ community }) => {
                             <Image source={require("../images/profile.png")}
                             style={styles.memberIcon} />
                         </View>
-                        <Text  style={styles.memberText}>0 members</Text>
+                        <Text  style={styles.memberText}>100 members</Text>
                     </View> 
-                    <TouchableOpacity style={styles.joinButton}>
+                    <TouchableOpacity style={styles.joinButton} onPress={() => handleJoin}>
                         <Image source={require("../images/join.png")}
                         style={styles.joinIcon} />
                         <Text style={styles.joinButtonText}>Join</Text></TouchableOpacity> 
