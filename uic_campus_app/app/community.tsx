@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
 import { onValue, ref } from "firebase/database";
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { database } from "./firebaseConfig"; // adjust path if needed
 
 const communitiesInDB = ref(database, "communities");
@@ -15,38 +15,6 @@ type Community = {
   created_at: Date;
   short_description: string;
 }
-
-// const community4: Community = {
-//   id: 4,
-//   name: "Gun Club",
-//   members_count: 30,
-//   created_at: new Date("2030-08-25T09:00:00Z"),
-//   short_description: "We Love Guns",
-// };
-
-// push(communitiesInDB, community4);
-
-// const community2: Community = {
-//   id: 2,
-//   name: "Psychology Club",
-//   members_count: 150,
-//   created_at: new Date("2022-09-10T11:30:00Z"),
-//   short_description: "A club for psychology students and enthusiasts to discuss theories, conduct research, and host guest speakers.",
-// };
-
-// const community3: Community = {
-//   id: 3,
-//   name: "Environmental Science Society",
-//   members_count: 80,
-//   created_at: new Date("2023-01-15T14:00:00Z"),
-//   short_description: "A group dedicated to promoting sustainability and environmental awareness through projects and community outreach.",
-// };
-
-// push(communitiesInDB, community2)
-
-// const ForYouCommunities : Community[] = [
-//   community1, community2, community3,
-// ]
 
 export default function Community() {
   const [communities, setCommunities] = React.useState<Community[]>([]);
@@ -74,7 +42,7 @@ export default function Community() {
           });
 
         } else {
-          console.error("No data available at this Firebase path.");
+          Error("No data available at this Firebase path.");
           setCommunities([]); 
         }
       });
@@ -85,12 +53,19 @@ export default function Community() {
 
   return (
     <View style={styles.container}>
+      <CreateCommunity />
       <CardCategoryContainer category='For You' cards={communities}/>
       <CardCategoryContainer category='Other Groups' cards={communities}/>
       <Footer />
     </View>
   );
 }
+
+const CreateCommunity = () => (
+  <Link href="/communities/create_community">
+    <View style={styles.createPostButton}><Text>Create Post</Text></View>
+  </Link>
+)
 
 const Footer = () => (
   <View style={styles.footer}>
@@ -137,6 +112,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+  },
+  createPostButton: {
+    backgroundColor: 'red',
   },
   footer: {
     padding: 20,
