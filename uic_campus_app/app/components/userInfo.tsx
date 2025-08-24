@@ -1,78 +1,105 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-
 export default function UserInfo() {
   return (
     <View style={styles.container}>
-    <View style={styles.userInfoContainer}>
-        <Image source={require("../images/dummyImg.jpg")} style={styles.profile}></Image>
-         <View style={styles.userInfo}>
-            <Text style={{color: '#000', fontWeight: '700', fontSize: 16}}>User Name</Text>
-            <Text style={{color:'#666', fontSize: 13}}>@userID</Text>
-            <TouchableOpacity onPress={()=>console.log('college Major pressed')}><Text style={styles.major}>Computer Science</Text></TouchableOpacity>
+      {/* Profile Section */}
+      <View style={styles.userInfoContainer}>
+        <Image source={require("../images/dummyImg.jpg")} style={styles.profile} />
+        <View style={styles.userInfo}>
+          <Text style={styles.username}>UserName</Text>
+          <Text style={styles.userHandle}>@userID</Text>
+          <TouchableOpacity onPress={() => console.log('College Major pressed')}>
+            <Text style={styles.major}>College Major</Text>
+          </TouchableOpacity>
         </View>
-    </View>
-    <View style={styles.bio}>
-        <Text>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, aliquid iure. Consequuntur, possimus animi debitis quae inventore harum! Reiciendis voluptates exercitationem esse nemo at voluptatum culpa sit nostrum eos doloremque!</Text>
-    </View>
-    <View style={styles.followContainer}>
-        <Text style={styles.follow}>10 Followings</Text>
+      </View>
+
+      {/* Bio Section */}
+      <View style={styles.bio}>
+        <Text style={styles.bioText}>
+          Lorem ipsum dolor sit amet, ing elit. Vivamus ssee. Lorem ipsum dolor sit amet, ing elit. Vivamus ssee.
+        </Text>
+      </View>
+
+      {/* Follow Section */}
+      {/* <View style={styles.followContainer}>
+        <Text style={styles.follow}>10 Following</Text>
         <Text style={styles.follow}>20 Followers</Text>
-    </View>
+      </View> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        paddingTop: 30,
-        paddingHorizontal: 30,
-        backgroundColor: '#fff'
-    },
+  container: {
+    paddingTop: 30,
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+  },
 
-    userInfoContainer:{
-        flexDirection: 'row',
-    },
-    profile:{
-        width: 100,
-        height: 100,
-        borderWidth: 1,
-        borderRadius: '100%',
-        borderColor: '#ccc',
-        marginEnd: 20
+  userInfoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 
-    },
-    userInfo:{
-        height:'95%',
-        display: 'flex',
-        justifyContent: 'space-between'
+  profile: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginRight: 15,
+  },
 
+  userInfo: {
+    justifyContent: 'space-between',
+    height: 80,
+  },
 
-    },
-    
-    major:{
-        backgroundColor: '#007bff',
-        color: '#fff',
-        padding: 8,
-        fontSize: 13,
-        borderRadius: 20,
-        fontWeight: 500
-    },
+  username: {
+    color: '#000',
+    fontWeight: '700',
+    fontSize: 16,
+  },
 
-    bio:{
-        marginTop: 20,
-        textAlign: 'center'
-    },
+  userHandle: {
+    color: '#666',
+    fontSize: 13,
+  },
 
-    followContainer:{
-        marginTop: 20,
-        flexDirection: 'row',
-        // justifyContent: 'space-evenly',
-    },
+  major: {
+    backgroundColor: '#007bff',
+    color: '#fff',
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    fontSize: 13,
+    borderRadius: 20,
+    fontWeight: '500',
+    alignSelf: 'flex-start',
+    marginTop: 6,
+  },
 
-    follow:{
-        marginEnd: 20,
-        fontWeight: 700
-    },
-})
+  bio: {
+    marginTop: 16,
+  },
+
+  bioText: {
+    fontSize: 14,
+    color: '#000',
+    lineHeight: 20,
+  },
+
+  followContainer: {
+    flexDirection: 'row',
+    marginTop: 16,
+  },
+
+  follow: {
+    marginRight: 20,
+    fontWeight: '700',
+    fontSize: 14,
+    color: '#000',
+  },
+});
