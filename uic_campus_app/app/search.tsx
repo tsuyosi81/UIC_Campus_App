@@ -1,4 +1,5 @@
 import { Text, View } from "react-native";
+import SocialFeed from "./social_feed";
 
 export default function Search() {
   return (
@@ -11,6 +12,8 @@ export default function Search() {
     >
       <Text>This is the search.tsx
       </Text>
+
+      <SocialFeed></SocialFeed>
     </View>
   );
 }

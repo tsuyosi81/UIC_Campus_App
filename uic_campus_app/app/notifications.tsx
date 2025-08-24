@@ -1,16 +1,90 @@
-import { Text, View } from "react-native";
+import React from "react";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import styles from "./components/css/notification_style.js";
+import Event from "./components/events.tsx";
+import Header from "./components/headerNotification.tsx";
+import Mention from "./components/mention.tsx";
+import Reminder from "./components/reminder.tsx";
+import Warning from "./components/warning.tsx";
 
 export default function Notifications() {
+
+  const [activeTab, setActiveTab] = React.useState('All')
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>This is the notifications.tsx
-      </Text>
-    </View>
+    <>
+      <View style={styles.container}>
+        <Header/>
+        <View style={styles.tabContainer}>
+          <TouchableOpacity onPress={() => setActiveTab('All')}>
+            <Text style={[styles.tabText, activeTab === 'All' && styles.activeTabText]}>All</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setActiveTab('Mentions')}>
+            <Text style={[styles.tabText, activeTab === 'Mentions' && styles.activeTabText]}>Mentions</Text>
+          </TouchableOpacity>
+        </View>
+          <ScrollView style={styles.notificationContainer}>
+            {(activeTab === 'Mentions' || activeTab === 'All') && <Mention 
+              link="/social_feed" 
+              avatarSource={require("./images/avatar.png")} 
+              actionSource={require("./images/like.png")} 
+              users="Bob" 
+              action="reacted"
+            />}
+            {(activeTab === 'Alerts' || activeTab === 'All') && <Warning
+              link="/safety_map"
+              action="alert"
+              location="[location]"
+              alertDetails="[alertDetails]."
+            />}
+          {(activeTab === 'Mentions' || activeTab === 'All') && <Mention 
+              link="/social_feed" 
+              avatarSource={require("./images/avatar.png")} 
+              actionSource={require("./images/comment.png")} 
+              users="Zach" 
+              action="commented"
+            />}
+            {(activeTab === 'Mentions' || activeTab === 'All') && <Mention 
+              link="/social_feed" 
+              avatarSource={require("./images/avatar.png")} 
+              actionSource={require("./images/mad.png")} 
+              users="AAAAA" 
+              action="reacted"
+            />}
+          {(activeTab === 'Alerts' || activeTab === 'All') && <Warning
+            link="/safety_map"
+            action="warn"
+            location="[location]"
+            user="Shawn"
+          />}
+          {(activeTab === 'Events' || activeTab === 'All') && <Reminder
+            link="/event"
+            name="[eventName]"
+            timeLeft="[timeLeft]"
+          />}
+          {(activeTab === 'Mentions' || activeTab === 'All') && <Mention 
+            link="/social_feed" 
+            avatarSource={require("./images/avatar.png")} 
+            actionSource={require("./images/heart.png")} 
+            users="Gabe" 
+            action="reacted"
+          />}
+          {(activeTab === 'Mentions' || activeTab === 'All') && <Mention 
+            link="/social_feed" 
+            avatarSource={require("./images/avatar.png")} 
+            actionSource={require("./images/comment.png")} 
+            users="HelloWorld" 
+            action="commented"
+          />}
+          {(activeTab === 'Events' || activeTab === 'All') && <Event
+            link="/event"
+            name="[eventName]"
+            organization="@org"
+          />}
+        </ScrollView>               
+      </View> 
+    </>
   );
 }
+
+//User object should be made
