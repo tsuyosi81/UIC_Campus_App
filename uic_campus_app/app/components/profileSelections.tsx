@@ -6,50 +6,61 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ProfileSelections() {
-  const [activeTab, setActiveTab] = useState('Feed')
+  const [activeTab, setActiveTab] = useState('Feed');
 
-  return (  
-          <View style={styles.contentSelections}>
-            <TouchableOpacity onPress={()=>setActiveTab('Feed')}>
-                <Text style={styles.selection}>Feed</Text>
-                {activeTab === 'Feed' && <View style={styles.underline} />}
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setActiveTab('Repost/Comment')}>
-                <Text style={styles.selection}>Repost/Comment</Text>
-                {activeTab === 'Repost/Comment' && <View style={styles.underline} />}
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setActiveTab('Media')}>
-                <Text style={styles.selection}>Media</Text>
-                {activeTab === 'Media' && <View style={styles.underline} />}
-            </TouchableOpacity>
-          </View>
+  const tabs = ['Feed', 'Repost/Comment', 'Media'];
+
+  return (
+    <View style={styles.tabContainer}>
+      {tabs.map((tab) => (
+        <TouchableOpacity
+          key={tab}
+          style={styles.tabButton}
+          onPress={() => setActiveTab(tab)}
+        >
+          <Text style={[styles.tabText, activeTab === tab && styles.activeTabText]}>
+            {tab}
+          </Text>
+          {activeTab === tab && <View style={styles.underline} />}
+        </TouchableOpacity>
+      ))}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-
-    contentSelections: {
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '100%',
-        paddingTop: 30,
-        paddingBottom: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: "#ccc"
-    },
-
-    selection:{
-        marginBottom: 0,
-        fontWeight: '600',
-        fontSize: 14,
-    },
-
-    underline: {
-        marginTop: 4,
-        height: 3,
-        width: '100%',
-        backgroundColor: 'dodgerblue',
-        borderRadius: 2,
+  tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    paddingTop: 10,
+    paddingBottom: 4,
   },
-})
+
+  tabButton: {
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingBottom: 6,
+  },
+
+  tabText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#000',
+  },
+
+  activeTabText: {
+    color: 'black',
+  },
+
+  underline: {
+    marginTop: 4,
+    height: 3,
+    width: '100%',
+    backgroundColor: 'dodgerblue',
+    borderRadius: 2,
+  },
+});
+
